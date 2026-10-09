@@ -254,6 +254,18 @@ li.so .nm,li.so small{text-decoration:line-through;text-decoration-thickness:1px
 .upcoming li{padding:.65rem .7rem;border-bottom:1px solid rgba(21,17,14,.25);box-shadow:inset 6px 0 0 var(--geranium)}
 .upcoming b{font-family:var(--display);font-weight:800}
 .preview{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--gold);color:var(--timber);padding:.65rem 1rem;font-weight:600;text-align:center;font-size:.95rem}
+/* ---------- feature panel ---------- */
+.feature[hidden]{display:none}
+.feature{background:var(--timber);color:var(--plaster);position:relative;overflow:hidden}
+.feature .bunting{height:34px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='34'%3E%3Cpath d='M0 0h40L20 30z' fill='%23C6283A'/%3E%3Cpath d='M40 0h40L60 30z' fill='%23D9A441'/%3E%3Cpath d='M80 0h40l-20 30z' fill='%232E7D4F'/%3E%3Cpath d='M120 0h40l-20 30z' fill='%23ECEAE4'/%3E%3Cpath d='M0 1h160' stroke='%23ECEAE4' stroke-width='2'/%3E%3C/svg%3E") repeat-x 0 0/160px 34px}
+.feature-in{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.5rem,4vw,4rem);align-items:center;padding-block:clamp(2.6rem,7vw,5rem)}
+.feature .kicker{margin:0 0 .6rem;color:var(--gold);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.85rem}
+.feature h2{color:#fff;max-width:none;margin-bottom:1rem}
+.feature .lead{color:#E4DFD3;max-width:34rem}
+.feature-list{list-style:none;margin:0;padding:1.4rem 1.5rem;border:2px dashed var(--gold);display:grid;gap:.7rem}
+.feature-list li{position:relative;padding-left:1.5rem;font-size:1.08rem}
+.feature-list li::before{content:"";position:absolute;left:0;top:.5em;width:.7rem;height:.7rem;background:var(--geranium);transform:rotate(45deg)}
+@media (max-width:760px){.feature-in{grid-template-columns:1fr}}
 /* ---------- What's on + walks ---------- */
 .events{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:1rem;max-width:860px}
 .events li{display:grid;grid-template-columns:5.4rem 1fr;gap:1.2rem;background:#fff;border:2px solid var(--timber);padding:1rem 1.2rem 1rem 1rem;align-items:start}
@@ -366,6 +378,20 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
         </div>
         <p class="fb">100% of 29 Facebook reviewers recommend us.<br><a href="https://www.tripadvisor.co.uk/Restaurant_Review-g187046-d2315746-Reviews-Royal_Oak_at_Burton_Leonard-Harrogate_North_Yorkshire_England.html">Read the Tripadvisor reviews</a></p>
       </div>
+    </div>
+  </section>
+
+  <!-- FEATURE (driven by the Feature tab) -->
+  <section class="panel feature" id="feature" aria-labelledby="feature-h" hidden>
+    <div class="bunting" aria-hidden="true"></div>
+    <div class="wrap feature-in">
+      <div>
+        <p class="kicker" id="feature-kicker"></p>
+        <h2 id="feature-h"></h2>
+        <p class="lead" id="feature-text"></p>
+        <p><a class="btn red" id="feature-btn" href="tel:01765677198">Call to book</a></p>
+      </div>
+      <ul class="feature-list" id="feature-list"></ul>
     </div>
   </section>
 
@@ -570,8 +596,8 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
    4. what is already written in this page
    ===================================================================== */
 var SRC=window.ROYAL_OAK_SOURCES||{};
-var LOCAL={hours:"data/hours.csv",menu:"data/menu.csv",drinks:"data/drinks.csv",offers:"data/offers.csv",events:"data/events.csv"};
-var DATA={hours:null,menu:null,drinks:null,offers:null,events:null};
+var LOCAL={hours:"data/hours.csv",menu:"data/menu.csv",drinks:"data/drinks.csv",offers:"data/offers.csv",events:"data/events.csv",feature:"data/feature.csv"};
+var DATA={hours:null,menu:null,drinks:null,offers:null,events:null,feature:null};
 
 /* Built-in opening hours, used only if no sheet or CSV can be read. Same shape as the Hours tab. */
 var HOURS_FALLBACK=[
@@ -986,6 +1012,24 @@ function renderOffers(){
   band.hidden=!rows.length;
 }
 
+/* ---------- feature panel ---------- */
+function safeHref(h){h=(h||"").trim();return /^(tel:|mailto:|https:\/\/|#)/i.test(h)?h:"tel:01765677198";}
+function renderFeature(){
+  var sec=$("feature");if(!sec)return;
+  var rows=DATA.feature?live(DATA.feature,contentDate(),"show from","show until").filter(function(r){return r.heading;}):[];
+  if(!rows.length){sec.hidden=true;return;}
+  var r=rows[0];
+  $("feature-kicker").textContent=r.kicker||"";
+  $("feature-kicker").hidden=!r.kicker;
+  $("feature-h").textContent=r.heading;
+  $("feature-text").textContent=r.text||"";
+  var b=$("feature-btn");b.textContent=r["button label"]||"Call to book";b.href=safeHref(r["button link"]);
+  var ul=$("feature-list");clear(ul);
+  (r.bullets||"").split("|").forEach(function(t){t=t.trim();if(t)ul.appendChild(el("li",null,t));});
+  ul.hidden=!ul.firstChild;
+  sec.hidden=false;
+}
+
 /* ---------- events (What's on) ---------- */
 function evParts(n){var y=Math.floor(n/10000),m=Math.floor(n/100)%100,d=n%100;return {y:y,m:m,d:d,dow:new Date(Date.UTC(y,m-1,d)).getUTCDay()};}
 function renderEvents(){
@@ -1027,12 +1071,13 @@ function renderAll(){
   renderDrinks();
   renderOffers();
   renderEvents();
+  renderFeature();
 }
 
 /* ---------- start-up ---------- */
 function got(name){return function(rows){DATA[name]=rows;renderAll();};}
 renderAll();                          /* immediately, with built-in hours */
-["hours","menu","drinks","offers","events"].forEach(function(n){loadSource(n,got(n));});
+["hours","menu","drinks","offers","events","feature"].forEach(function(n){loadSource(n,got(n));});
 
 var lastDay=num(londonNow());
 setInterval(function(){
@@ -1040,7 +1085,7 @@ setInterval(function(){
   if(d!==lastDay){lastDay=d;renderAll();}else{renderStatus();}
 },60000);
 setInterval(function(){                /* pick up sheet changes without a reload */
-  ["hours","menu","drinks","offers","events"].forEach(function(n){loadSource(n,function(rows){if(rows){DATA[n]=rows;}});});
+  ["hours","menu","drinks","offers","events","feature"].forEach(function(n){loadSource(n,function(rows){if(rows){DATA[n]=rows;}});});
   setTimeout(renderAll,4000);
 },10*60000);
 

@@ -43,3 +43,6 @@ Add `?date=2026-12-31` to the address to see the site as it will look on that da
 
 ## Drinks and wine prices
 The Drinks tab has a Price column for single-price items and Small (125ml), Medium (175ml), Large (250ml) and Bottle (75cl) columns for wine. Blank sizes are not shown. The wine list is copied from the pub's current wine page; prices are blank until filled in.
+
+## Feature panel
+The big highlighted panel above the menu (currently the New Year's Eve BBQ, with bunting) comes from the Feature tab: Kicker, Heading, Text, Bullets (separated by |), Button label, Button link, Show from, Show until, Status. It appears and disappears on its dates; if none is live there is no panel. Link `feature` in `config.js` once the Feature tab is published.
