@@ -40,3 +40,6 @@ Add `?date=2026-12-31` to the address to see the site as it will look on that da
 ## What's on and walks
 - **What's on** is driven by the Events tab (Event, Date, End date, Time, Description, Family friendly, Booking note, Show from, Status). An event appears from its Show from date and disappears after its date. With nothing scheduled the section shows "Next dates coming soon". The two rows in the sheet are hidden examples.
 - **Walks & rides** is plain HTML in `index.html`, using public route details from Yorkshire.com and Walking Britain. It's a demonstration; swap in the pub's own favourite routes when known.
+
+## Drinks and wine prices
+The Drinks tab has a Price column for single-price items and Small (125ml), Medium (175ml), Large (250ml) and Bottle (75cl) columns for wine. Blank sizes are not shown. The wine list is copied from the pub's current wine page; prices are blank until filled in.

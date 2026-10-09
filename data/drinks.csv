@@ -1,7 +1,19 @@
-Section,Item,Description,Price,Tags,Show from,Show until,Days,Status
-Cask ale,Real ale on handpump,A changing local guest alongside the regulars. Ask at the bar for this week's pumps.,,,,,,Live
-Gin,Gin menu,A good list of gins and serves.,,,,,,Live
-Wine,Wine by the glass or bottle,Ask for the wine menu.,,,,,,Live
-Cocktails,Pornstar Martini,,,,,,,Live
-Cocktails,Espresso Martini,,,,,,,Live
-Cocktails,Strawberry Daiquiri,,,,,,,Live
+Section,Item,Description,Price,Small,Medium,Large,Bottle,Tags,Show from,Show until,Days,Status
+Cask ale,Real ale on handpump,A changing local guest alongside the regulars. Ask at the bar for this week's pumps.,,,,,,,,,,Live
+Gin,Gin menu,A good list of gins and serves.,,,,,,,,,,Live
+White wine,Ponte Pinot Grigio,"Very light and neutral, revealing just a hint of green fruit.",,,,,,,,,,Live
+White wine,Seppelt Moyston Unoaked Chardonnay,"A restrained and delicate Chardonnay, showing hints of melon and banana.",,,,,,,,,,Live
+White wine,Finca de Oro White Rioja,"Fresh, clean and youthful with attractive apple and peardrop aromas.",,,,,,,,,,Live
+White wine,"Box or Budgies Sauvignon Blanc, Marlborough",,,,,,,,,,,Live
+Red wine,Castillo de Piedra Tempranillo,Light and fruity with soft red fruit flavours and a touch of spice on the finish.,,,,,,,,,,Live
+Red wine,Caliterra Merlot,"A ripe, forward, mid-bodied, gently fruity merlot.",,,,,,,,,,Live
+Red wine,Seppelt Moyston Shiraz,"A youthful, juicy Shiraz with a good weight of fruit.",,,,,,,,,,Live
+Red wine,"Andean Vineyards Malbec, Mendoza",A mid-bodied and warming red wine with a good attack of damson and spice aromas.,,,,,,,,,,Live
+Rosé wine,Castillo de Piedra Tempranillo Rosé,Off-dry rosé with tempting strawberry fruit flavours.,,,,,,,,,,Live
+Rosé wine,Ponte Pinot Grigio Rosato,A fresh and youthful off-dry wine with a lovely rose petal pink colour.,,,,,,,,,,Live
+Sparkling,Symphoniae Prosecco DOCG Valdobbiadene Extra,"Pleasantly attractive, off-dry, with ripe yellow fruit aromas. Bottle only.",,,,,,,,,,Live
+Champagne,H. Lanvin & Fils Brut,"Golden, with fine bubbles. Fresh on the nose with a rounded, toasty palate. Bottle only.",,,,,,,,,,Live
+Champagne,H. Lanvin & Fils Rosé,"Pale salmon pink, fresh and elegant with red fruit character. Bottle only.",,,,,,,,,,Live
+Cocktails,Pornstar Martini,,,,,,,,,,,Live
+Cocktails,Espresso Martini,,,,,,,,,,,Live
+Cocktails,Strawberry Daiquiri,,,,,,,,,,,Live

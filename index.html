@@ -218,6 +218,10 @@ h3{font-family:var(--display);font-weight:800;font-size:1.45rem;letter-spacing:-
 .drinks-list li{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;border-bottom:1px solid rgba(21,17,14,.2)}
 .drinks-list li small{display:block;font-size:.92rem;color:var(--muted);line-height:1.35}
 .drinks-list li .p{font-family:var(--display);font-weight:800;white-space:nowrap}
+@media (min-width:861px){#drink .mosaic-box{position:sticky;top:6rem;align-self:start}}
+.sizes{display:flex;flex-wrap:wrap;gap:.2rem .9rem;margin-top:.3rem}
+.sizes .sz{font-family:var(--display);font-weight:800;font-size:.95rem;white-space:nowrap}
+.sizes .sz i{font-family:var(--body);font-style:normal;font-weight:500;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .drinks-list .note{margin:.2rem 0 .3rem}
 
 /* ---------- tags, sold out ---------- */
@@ -881,6 +885,12 @@ function itemLi(r){
   tagsOf(r).forEach(function(t){left.appendChild(el("span","tag",t.toUpperCase()));});
   if(soldOut(r))left.appendChild(el("span","tag sold","Sold out"));
   if(r.description)left.appendChild(el("small",null,r.description));
+  var sz=el("span","sizes");
+  [["small","Small","125ml"],["medium","Medium","175ml"],["large","Large","250ml"],["bottle","Bottle","75cl"]].forEach(function(k){
+    var v=price(r[k[0]]);if(!v)return;
+    var s1=el("span","sz");s1.appendChild(el("i",null,k[1]));s1.appendChild(document.createTextNode(" "+v));s1.title=k[2];sz.appendChild(s1);
+  });
+  if(sz.firstChild)left.appendChild(sz);
   li.appendChild(left);
   var p=price(r.price);
   if(p)li.appendChild(el("span","p",p));
