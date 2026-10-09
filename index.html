@@ -283,6 +283,14 @@ li.so .nm,li.so small{text-decoration:line-through;text-decoration-thickness:1px
 .walk .stats{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 .8rem;padding:0;list-style:none}
 .walk .stats li{background:var(--timber);color:#fff;font-size:.8rem;font-weight:600;padding:.2rem .6rem;border-radius:999px}
 .walk p{margin:0}
+.route-h{font-family:var(--display);font-weight:800;font-size:1.5rem;margin:2.2rem 0 -.8rem;letter-spacing:-.01em}
+.walk .more-link{display:inline-block;margin-top:.8rem;font-weight:600;text-underline-offset:4px}
+.walk .map-btn{margin-top:.9rem;margin-right:.8rem;font:inherit;cursor:pointer}
+.walk.open{grid-column:1/-1}
+.route-map{margin-top:1rem;border:2px solid var(--timber);background:var(--plaster)}
+.route-map iframe{display:block;width:100%;height:620px;border:0}
+.route-map small{display:block;padding:.4rem .7rem;color:var(--muted)}
+@media (max-width:640px){.route-map iframe{height:560px}}
 .walks .more{max-width:860px}
 .walks .more p{margin:.5rem 0}
 .walks .src{font-size:.9rem;color:var(--muted)}
@@ -516,27 +524,14 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
     <div class="wrap">
       <h2 id="walks-h">Walk here. Earn the pint.</h2>
       <p class="lead">Burton Leonard sits on the Ripon Rowel Walk, with farmland, canal towpath and quiet lanes right on the doorstep. Dogs are welcome in our beer gardens.</p>
-      <div class="walk-grid">
-        <article class="walk">
-          <h3>Burton Leonard circular</h3>
-          <ul class="stats"><li>6.5 miles</li><li>Moderate</li><li>About 2&frac14; hours</li></ul>
-          <p>Across farmland to South Stainley, onto the Ripon Rowel path, and back via Copgrove. There is roadside parking in the village.</p>
-        </article>
-        <article class="walk">
-          <h3>Ripon Canal</h3>
-          <ul class="stats"><li>2 miles</li><li>Moderate</li></ul>
-          <p>A stretch of towpath beside the Ripon Canal, with boats, birds and no traffic.</p>
-        </article>
-        <article class="walk">
-          <h3>Ripon Rowel Walk, first leg</h3>
-          <ul class="stats"><li>10 miles, one way</li><li>Easy to moderate</li></ul>
-          <p>Ripon Minster to South Stainley along the canal, the River Ure at Oxclose Lock and Bishop Monkton, then through Burton Leonard past the village green. The No. 36 bus runs back to Ripon.</p>
-        </article>
-      </div>
+      <h3 class="route-h" id="walk-h" hidden>On foot</h3>
+      <div class="walk-grid" id="walk-grid"></div>
+      <h3 class="route-h" id="ride-h" hidden>On two wheels</h3>
+      <div class="walk-grid" id="ride-grid"></div>
       <div class="more">
-        <p><strong>On two wheels:</strong> quiet lanes link Burton Leonard, Bishop Monkton and Copgrove. <a href="https://www.komoot.com/guide/2776737/cycling-around-bishop-monkton">Komoot's cycling guide around Bishop Monkton</a> is a good place to start planning a loop.</p>
+        <p><strong>More rides:</strong> quiet lanes link Burton Leonard, Bishop Monkton and Copgrove. <a href="https://www.komoot.com/guide/2776737/cycling-around-bishop-monkton">Komoot's cycling guide around Bishop Monkton</a> is a good place to start planning a loop.</p>
         <p><strong>Further afield:</strong> Fountains Abbey, Newby Hall, Hackfall Woods and Markenfield Hall are all on or near the Rowel.</p>
-        <p class="src">Route details from <a href="https://www.yorkshire.com/burton-leonard">Yorkshire.com</a> and <a href="https://www.walkingbritain.co.uk/walk-2403-print">Walking Britain</a>. Check the route and conditions before you set out.</p>
+        <p class="src">Walk details from <a href="https://www.yorkshire.com/burton-leonard">Yorkshire.com</a> and <a href="https://www.walkingbritain.co.uk/walk-2403-print">Walking Britain</a>; ride maps from <a href="https://www.komoot.com/user/1733104354952">Komoot</a>. Check the route and conditions before you set out.</p>
       </div>
     </div>
   </section>
@@ -596,8 +591,8 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
    4. what is already written in this page
    ===================================================================== */
 var SRC=window.ROYAL_OAK_SOURCES||{};
-var LOCAL={hours:"data/hours.csv",menu:"data/menu.csv",drinks:"data/drinks.csv",offers:"data/offers.csv",events:"data/events.csv",feature:"data/feature.csv"};
-var DATA={hours:null,menu:null,drinks:null,offers:null,events:null,feature:null};
+var LOCAL={hours:"data/hours.csv",menu:"data/menu.csv",drinks:"data/drinks.csv",offers:"data/offers.csv",events:"data/events.csv",feature:"data/feature.csv",routes:"data/routes.csv"};
+var DATA={hours:null,menu:null,drinks:null,offers:null,events:null,feature:null,routes:null};
 
 /* Built-in opening hours, used only if no sheet or CSV can be read. Same shape as the Hours tab. */
 var HOURS_FALLBACK=[
@@ -1012,6 +1007,49 @@ function renderOffers(){
   band.hidden=!rows.length;
 }
 
+/* ---------- walks and rides ---------- */
+function safeUrl(u){u=(u||"").trim();return /^https:\/\//i.test(u)?u:"";}
+function routeCard(r){
+  var c=el("article","walk"),id=(r["komoot tour id"]||"").replace(/\D/g,"");
+  c.appendChild(el("h3",null,r.name));
+  var st=el("ul","stats");
+  if(r.miles)st.appendChild(el("li",null,r.miles+" miles"));
+  if(r["climb (ft)"]){var cl=(+r["climb (ft)"]);st.appendChild(el("li",null,(isNaN(cl)?r["climb (ft)"]:cl.toLocaleString("en-GB"))+" ft climb"));}
+  if(r.time)st.appendChild(el("li",null,r.time));
+  if(r.difficulty)st.appendChild(el("li",null,r.difficulty));
+  if(st.firstChild)c.appendChild(st);
+  if(r.description)c.appendChild(el("p",null,r.description));
+  if(id){
+    var b=el("button","btn dark map-btn","Show route map");b.type="button";b.setAttribute("aria-expanded","false");
+    var holder=el("div");
+    b.addEventListener("click",function(){
+      var open=b.getAttribute("aria-expanded")==="true";
+      clear(holder);
+      if(open){b.setAttribute("aria-expanded","false");b.textContent="Show route map";c.classList.remove("open");return;}
+      var box=el("div","route-map"),f=document.createElement("iframe");
+      f.src="https://www.komoot.com/tour/"+id+"/embed?layout=classic&profile=1";
+      f.title="Map of "+r.name;f.loading="lazy";f.setAttribute("allow","fullscreen");
+      box.appendChild(f);box.appendChild(el("small",null,"Map loaded from Komoot."));
+      holder.appendChild(box);b.setAttribute("aria-expanded","true");b.textContent="Hide map";c.classList.add("open");
+    });
+    c.appendChild(b);
+    c.appendChild(holder);
+  }
+  var u=safeUrl(r["more info link"]);
+  if(u){var a=el("a","more-link",id?"Open on Komoot":"Route details");a.href=u;c.appendChild(a);}
+  return c;
+}
+function renderRoutes(){
+  var wg=$("walk-grid"),rg=$("ride-grid");if(!wg||!rg||!DATA.routes)return;
+  var rows=DATA.routes.filter(function(r){return !hidden(r)&&r.name&&inWindow(r,"show from","show until",num(contentDate()));});
+  var walks=rows.filter(function(r){return /^walk|hik/i.test(r.type||"");});
+  var rides=rows.filter(function(r){return /^ride|cycl|bike/i.test(r.type||"");});
+  clear(wg);clear(rg);
+  walks.forEach(function(r){wg.appendChild(routeCard(r));});
+  rides.forEach(function(r){rg.appendChild(routeCard(r));});
+  $("walk-h").hidden=!walks.length;$("ride-h").hidden=!rides.length;
+}
+
 /* ---------- feature panel ---------- */
 function safeHref(h){h=(h||"").trim();return /^(tel:|mailto:|https:\/\/|#)/i.test(h)?h:"tel:01765677198";}
 function renderFeature(){
@@ -1072,12 +1110,13 @@ function renderAll(){
   renderOffers();
   renderEvents();
   renderFeature();
+  renderRoutes();
 }
 
 /* ---------- start-up ---------- */
 function got(name){return function(rows){DATA[name]=rows;renderAll();};}
 renderAll();                          /* immediately, with built-in hours */
-["hours","menu","drinks","offers","events","feature"].forEach(function(n){loadSource(n,got(n));});
+["hours","menu","drinks","offers","events","feature","routes"].forEach(function(n){loadSource(n,got(n));});
 
 var lastDay=num(londonNow());
 setInterval(function(){
@@ -1085,7 +1124,7 @@ setInterval(function(){
   if(d!==lastDay){lastDay=d;renderAll();}else{renderStatus();}
 },60000);
 setInterval(function(){                /* pick up sheet changes without a reload */
-  ["hours","menu","drinks","offers","events","feature"].forEach(function(n){loadSource(n,function(rows){if(rows){DATA[n]=rows;}});});
+  ["hours","menu","drinks","offers","events","feature","routes"].forEach(function(n){loadSource(n,function(rows){if(rows){DATA[n]=rows;}});});
   setTimeout(renderAll,4000);
 },10*60000);
 

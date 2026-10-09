@@ -39,10 +39,13 @@ Add `?date=2026-12-31` to the address to see the site as it will look on that da
 
 ## What's on and walks
 - **What's on** is driven by the Events tab (Event, Date, End date, Time, Description, Family friendly, Booking note, Show from, Status). An event appears from its Show from date and disappears after its date. With nothing scheduled the section shows "Next dates coming soon". The two rows in the sheet are hidden examples.
-- **Walks & rides** is plain HTML in `index.html`, using public route details from Yorkshire.com and Walking Britain. It's a demonstration; swap in the pub's own favourite routes when known.
+- **Walks & rides** comes from the Routes tab (see below).
 
 ## Drinks and wine prices
 The Drinks tab has a Price column for single-price items and Small (125ml), Medium (175ml), Large (250ml) and Bottle (75cl) columns for wine. Blank sizes are not shown. The wine list is copied from the pub's current wine page; prices are blank until filled in.
 
 ## Feature panel
 The big highlighted panel above the menu (currently the New Year's Eve BBQ, with bunting) comes from the Feature tab: Kicker, Heading, Text, Bullets (separated by |), Button label, Button link, Show from, Show until, Status. It appears and disappears on its dates; if none is live there is no panel. Link `feature` in `config.js` once the Feature tab is published.
+
+## Walks & rides (Routes tab)
+Columns: Type (Walk or Ride), Name, Miles, Climb (ft), Time, Difficulty, Description, Komoot tour ID, More info link, Show from, Show until, Status. Paste the number from the end of a public Komoot route link (komoot.com/tour/743511818) into Komoot tour ID and the card gets a "Show route map" button; the map and elevation profile only load from Komoot when someone clicks it. The two rides are Dave's recorded rides (Nidderdale Classic and Ferrensby, Knaresborough and Ripley). The three walks are from public sources and have no map, because there is no Komoot route for them yet.
