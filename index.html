@@ -191,6 +191,17 @@ h3{font-family:var(--display);font-weight:800;font-size:1.45rem;letter-spacing:-
 .drinks-list p{margin:0}
 .drinks-list a{font-weight:600;text-underline-offset:4px}
 .mosaic-box{max-width:560px}
+.drinks-list ul{list-style:none;margin:0;padding:0}
+.drinks-list li{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;border-bottom:1px solid rgba(21,17,14,.2)}
+.drinks-list li small{display:block;font-size:.92rem;color:var(--muted);line-height:1.35}
+.drinks-list li .p{font-family:var(--display);font-weight:800;white-space:nowrap}
+.drinks-list .note{margin:.2rem 0 .3rem}
+
+/* ---------- tags, sold out ---------- */
+.tag{display:inline-block;font:600 .68rem var(--body);border:1px solid currentColor;border-radius:4px;padding:0 .32em;margin-left:.5em;vertical-align:.14em;opacity:.9;letter-spacing:.03em;line-height:1.5}
+li.so .nm,li.so small{text-decoration:line-through;text-decoration-thickness:1px;opacity:.55}
+.roast li .tag{font-size:.8rem;vertical-align:.5em}
+.next[hidden]{display:none}
 
 /* ---------- garden ---------- */
 .garden{position:relative;min-height:clamp(520px,82svh,780px);display:flex;align-items:flex-end;overflow:hidden;background:var(--timber)}
@@ -208,6 +219,14 @@ h3{font-family:var(--display);font-weight:800;font-size:1.45rem;letter-spacing:-
 .hours li.today{background:var(--timber);color:#fff}
 .hours li.today .n{color:#CFC9BC}
 .hours li.closed:not(.today) .h{color:var(--muted)}
+.hours li.special{box-shadow:inset 6px 0 0 var(--geranium)}
+.upcoming-box{margin-top:2rem}
+.upcoming-box h3{margin-bottom:.4rem}
+.upcoming-box[hidden]{display:none}
+.upcoming{list-style:none;margin:0;padding:0;border-top:3px solid var(--timber)}
+.upcoming li{padding:.65rem .7rem;border-bottom:1px solid rgba(21,17,14,.25);box-shadow:inset 6px 0 0 var(--geranium)}
+.upcoming b{font-family:var(--display);font-weight:800}
+.preview{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--gold);color:var(--timber);padding:.65rem 1rem;font-weight:600;text-align:center;font-size:.95rem}
 .visit h2{max-width:12ch}
 address{font-style:normal;font-size:1.25rem;line-height:1.5;margin:0 0 1.2rem}
 .tel{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,5.2vw,3.4rem);letter-spacing:-.035em;text-decoration:none;display:inline-block;margin-bottom:1.2rem;line-height:1}
@@ -245,7 +264,7 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
 
 <div class="offer" id="offer-band" hidden>
   <div class="wrap">
-    <p id="offer-text"></p>
+    <div id="offer-list"></div>
     <a href="tel:01765677198">Call to reserve: 01765 677198</a>
   </div>
 </div>
@@ -302,14 +321,16 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
   <section class="panel chalk" id="food" aria-labelledby="food-h">
     <div class="wrap inner">
       <h2 id="food-h">On the board</h2>
-      <p class="lead">Home-cooked pub food, winter menu. Please book ahead, Fridays to Sundays especially.</p>
+      <p class="lead">Home-cooked pub food, made in our own kitchen. Please book ahead, Fridays to Sundays especially.</p>
 
+      <div id="menu-special">
       <div class="special">
         <span>Thursday: fish &amp; chips night</span><span>&pound;9.95</span>
         <small>Fish, chips, mushy peas, bread and butter. Served 5 to 8pm.</small>
       </div>
+      </div>
 
-      <div class="menu">
+      <div class="menu" id="menu-board">
         <div>
           <h3>Mains</h3>
           <ul>
@@ -352,13 +373,13 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
   <section class="panel braced pad" id="sunday" aria-labelledby="sunday-h">
     <div class="wrap roast">
       <div>
-        <h2 id="sunday-h">Sunday lunch, once a month.</h2>
-        <p class="next">Next Sunday lunch<b id="next-lunch">last Sunday of the month</b>12 to 5pm. Please book.</p>
+        <h2 id="sunday-h">Sunday lunch.</h2>
+        <p class="next" id="next-wrap">Next Sunday lunch<b id="next-lunch">last Sunday of the month</b>12 to 5pm. Please book.</p>
         <p class="lead">Every plate comes with a Yorkshire pudding made with eggs from Taylors farm, roast potatoes, creamy mash, seasonal veg and a generous helping of rich beef and beer gravy.</p>
         <p>Fancy a giant Yorkshire? Ask when you book, at least 24 hours ahead (+&pound;2). Children's roast &pound;5.95. Booking is recommended.</p>
         <p><a class="btn red" href="tel:01765677198">Call to book</a></p>
       </div>
-      <ul aria-label="Sunday roast choices">
+      <ul id="roast-list" aria-label="Sunday roast choices">
         <li>Slow-cooked brisket</li>
         <li>Roast pork &amp; crackling</li>
         <li>Roast chicken &amp; stuffing</li>
@@ -381,7 +402,7 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
       <div>
         <h2 id="drink-h">No brewery tie, so we pour what we like.</h2>
         <p class="lead">Cask ale kept the way it should be, often from a local brewery, plus a serious gin list.</p>
-        <div class="drinks-list">
+        <div class="drinks-list" id="drinks-list">
           <div><h3>Beer</h3><p>Real ale on handpump, with a changing local guest. <a href="https://www.theroyaloak-burtonleonard.co.uk/beer">See the beer list</a></p></div>
           <div><h3>Gin &amp; wine</h3><p>Pages of gin, and wine by the glass or bottle. <a href="https://www.theroyaloak-burtonleonard.co.uk/gin">Gin menu</a> &middot; <a href="https://www.theroyaloak-burtonleonard.co.uk/wine">Wine menu</a></p></div>
           <div><h3>Cocktails</h3><p>Pornstar Martini, Espresso Martini and Strawberry Daiquiri.</p></div>
@@ -416,6 +437,10 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
           <li data-day="6"><span class="d">Saturday</span><span class="h">3pm &ndash; 11pm<span class="n">Food 5&ndash;8pm</span></span></li>
           <li data-day="0"><span class="d">Sunday</span><span class="h">12pm &ndash; 8pm<span class="n">Sunday lunch 12&ndash;5pm on the last Sunday of the month</span></span></li>
         </ul>
+        <div class="upcoming-box" id="hours-upcoming" hidden>
+          <h3>Coming up</h3>
+          <ul class="upcoming"></ul>
+        </div>
       </div>
       <div>
         <h2 style="font-size:clamp(2rem,4.4vw,3.4rem)">Find us.</h2>
@@ -439,103 +464,467 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
   </div>
 </footer>
 
+<script src="config.js"></script>
 <script>
 (function(){
-  /* ---- Special offers: edit here. "until" is the last day it shows (YYYYMMDD). ---- */
-  var OFFERS=[
-    {text:"The 5-5-5 menu: Friday 9 and Saturday 10 October. Please reserve, we get busy.",until:20261010}
-  ];
+"use strict";
 
-  /* ---- Opening hours (24h). close:null means "until close", no stated time. ---- */
-  var HOURS={
-    0:{open:12,close:20,food:null,
-       noFoodOpen:"Drinks today. Sunday lunch is on the last Sunday of the month.",
-       noFoodOpens:"Sunday lunch is on the last Sunday of the month."},
-    1:null,2:null,
-    3:{open:17,close:22,food:null,
-       noFoodOpen:"Drinks only tonight. Cask ale and a good gin list.",
-       noFoodOpens:"Drinks only on Wednesdays."},
-    4:{open:17,close:null,food:[17,20]},
-    5:{open:15,close:null,food:[17,20]},
-    6:{open:15,close:23,food:[17,20]}
-  };
-  var NAMES=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
-  function fmt(h){return h===12?"12pm":h>12?(h-12)+"pm":h+"am";}
+/* =====================================================================
+   Content comes from four spreadsheet tabs (Hours, Menu, Drinks, Offers).
+   Sources are set in config.js. Order tried for each tab:
+   1. the Google Sheets "Publish to web" CSV link (config.js)
+   2. the last copy that worked on this device
+   3. the CSV files in the data/ folder
+   4. what is already written in this page
+   ===================================================================== */
+var SRC=window.ROYAL_OAK_SOURCES||{};
+var LOCAL={hours:"data/hours.csv",menu:"data/menu.csv",drinks:"data/drinks.csv",offers:"data/offers.csv"};
+var DATA={hours:null,menu:null,drinks:null,offers:null};
 
-  function londonNow(){
-    var p=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/London",weekday:"long",year:"numeric",month:"numeric",day:"numeric",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());
-    var o={};p.forEach(function(x){o[x.type]=x.value;});
-    return {day:NAMES.indexOf(o.weekday),t:(parseInt(o.hour,10)%24)+parseInt(o.minute,10)/60,
-            y:parseInt(o.year,10),m:parseInt(o.month,10),d:parseInt(o.day,10)};
+/* Built-in opening hours, used only if no sheet or CSV can be read. Same shape as the Hours tab. */
+var HOURS_FALLBACK=[
+  {days:"Mon, Tue",closed:"Yes"},
+  {days:"Wed",opens:"17:00",closes:"22:00",note:"Drinks only"},
+  {days:"Thu",opens:"17:00","food from":"17:00","food to":"20:00","food label":"Food",note:"Fish & chips night, £9.95"},
+  {days:"Fri",opens:"15:00","food from":"17:00","food to":"20:00","food label":"Food"},
+  {days:"Sat",opens:"15:00",closes:"23:00","food from":"17:00","food to":"20:00","food label":"Food"},
+  {days:"Sun",opens:"12:00",closes:"20:00"},
+  {days:"Sun",week:"Last",opens:"12:00",closes:"20:00","food from":"12:00","food to":"17:00","food label":"Sunday lunch"}
+];
+
+var DAYN=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+var DAYS3=["sun","mon","tue","wed","thu","fri","sat"];
+var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+/* ---------- small helpers ---------- */
+function $(id){return document.getElementById(id);}
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined&&text!==null)e.textContent=text;return e;}
+function clear(n){while(n&&n.firstChild)n.removeChild(n.firstChild);}
+function yes(v){return /^(y|yes|true|1|x)$/i.test((v||"").trim());}
+function hidden(r){return /^(hidden|hide|off|no|false|0)$/i.test((r.status||"").trim());}
+function soldOut(r){return /sold/i.test(r.status||"");}
+function warn(m){if(window.console&&console.warn)console.warn("[Royal Oak sheet] "+m);}
+
+/* ---------- dates (all in UK time, as plain {y,m,d}) ---------- */
+function num(dt){return dt.y*10000+dt.m*100+dt.d;}
+function toDt(n){return {y:Math.floor(n/10000),m:Math.floor(n/100)%100,d:n%100};}
+function dim(y,m){return new Date(Date.UTC(y,m,0)).getUTCDate();}
+function dowOf(dt){return new Date(Date.UTC(dt.y,dt.m-1,dt.d)).getUTCDay();}
+function addDays(dt,k){var x=new Date(Date.UTC(dt.y,dt.m-1,dt.d+k));return {y:x.getUTCFullYear(),m:x.getUTCMonth()+1,d:x.getUTCDate()};}
+function londonNow(){
+  var p=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/London",year:"numeric",month:"numeric",day:"numeric",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());
+  var o={};p.forEach(function(x){o[x.type]=x.value;});
+  var n={y:+o.year,m:+o.month,d:+o.day,t:(+o.hour%24)+(+o.minute)/60};
+  n.dow=dowOf(n);return n;
+}
+function shortDate(dt){return DAYN[dowOf(dt)].slice(0,3)+" "+dt.d+" "+MONTHS[dt.m-1].slice(0,3);}
+
+/* Preview: add ?date=2026-12-31 to the address to see the site as it will look on that day */
+var PREVIEW=null;
+(function(){
+  try{
+    var m=(location.search||"").match(/[?&]date=(\d{4})-(\d{1,2})-(\d{1,2})/);
+    if(m)PREVIEW={y:+m[1],m:+m[2],d:+m[3]};
+  }catch(e){}
+})();
+function contentDate(){return PREVIEW||londonNow();}
+
+/* dd/mm/yyyy, yyyy-mm-dd or "9 Oct 2026" -> yyyymmdd. Blank -> null. Unreadable -> NaN. */
+function dnum(s){
+  s=(s||"").trim();if(!s)return null;
+  var m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if(m)return +m[1]*10000+ +m[2]*100+ +m[3];
+  m=s.match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{2,4})/);
+  if(m){var y=+m[3];if(y<100)y+=2000;return y*10000+ +m[2]*100+ +m[1];}
+  var d=new Date(s);
+  if(!isNaN(d.getTime()))return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+  return NaN;
+}
+function inWindow(r,fk,uk,n){
+  var f=dnum(r[fk]),u=dnum(r[uk]);
+  if(f!==f||u!==u){warn("Unreadable date in row: "+JSON.stringify(r));return false;}
+  if(f!==null&&n<f)return false;
+  if(u!==null&&n>u)return false;
+  return true;
+}
+
+/* 17:00, 5pm, 5:30 pm, 17.30 -> hours as a decimal. Blank -> null. Unreadable -> NaN. */
+function tnum(s){
+  s=(s||"").trim().toLowerCase();if(!s)return null;
+  var m=s.match(/^(\d{1,2})(?:[:.h](\d{2}))?(?::\d{2})?\s*(am|pm)?$/);
+  if(!m)return NaN;
+  var h=+m[1],mi=m[2]?+m[2]:0;
+  if(m[3]==="pm"&&h<12)h+=12;
+  if(m[3]==="am"&&h===12)h=0;
+  if(h>24||mi>59)return NaN;
+  return h+mi/60;
+}
+function fmtT(t){
+  var tt=t%24;
+  if(t>0&&tt===0)return "midnight";
+  var h=Math.floor(tt),m=Math.round((tt-h)*60);
+  if(m===60){h++;m=0;}
+  var ap=h>=12?"pm":"am",h12=h%12===0?12:h%12;
+  return h12+(m?":"+(m<10?"0":"")+m:"")+ap;
+}
+
+/* Mon, Tue / Fri-Sun / Thu to Sat / blank = every day */
+function dayOk(spec,dow){
+  spec=(spec||"").trim();if(!spec)return true;
+  return spec.toLowerCase().split(/[,;&\/]|\band\b/).some(function(tok){
+    tok=tok.trim();if(!tok)return false;
+    var p=tok.split(/\s*(?:-|–|\bto\b)\s*/);
+    var a=DAYS3.indexOf(p[0].slice(0,3));if(a<0)return false;
+    if(p.length<2)return a===dow;
+    var b=DAYS3.indexOf(p[1].slice(0,3));if(b<0)return false;
+    var k=a;
+    for(var i=0;i<8;i++){if(k===dow)return true;if(k===b)break;k=(k+1)%7;}
+    return false;
+  });
+}
+/* blank = every week; 1st 2nd 3rd 4th Last */
+function weekOk(spec,dt){
+  spec=(spec||"").trim();if(!spec)return true;
+  var nth=Math.ceil(dt.d/7),last=dt.d+7>dim(dt.y,dt.m);
+  var map={first:1,"1st":1,"1":1,second:2,"2nd":2,"2":2,third:3,"3rd":3,"3":3,fourth:4,"4th":4,"4":4,fifth:5,"5th":5,"5":5};
+  return spec.toLowerCase().split(/[,;&\/]|\band\b/).some(function(t){
+    t=t.trim();if(!t)return false;
+    if(t==="last"||t==="l")return last;
+    if(/^(all|every|any)/.test(t))return true;
+    return map[t]===nth;
+  });
+}
+
+/* ---------- CSV ---------- */
+function parseCSV(text){
+  var rows=[],row=[],f="",q=false,i,c;
+  text=text.replace(/^﻿/,"");
+  for(i=0;i<text.length;i++){
+    c=text[i];
+    if(q){
+      if(c==='"'){if(text[i+1]==='"'){f+='"';i++;}else q=false;}
+      else f+=c;
+    }else if(c==='"')q=true;
+    else if(c===","){row.push(f);f="";}
+    else if(c==="\n"||c==="\r"){if(c==="\r"&&text[i+1]==="\n")i++;row.push(f);f="";rows.push(row);row=[];}
+    else f+=c;
   }
-  function lastSunday(y,m){
-    var dim=new Date(Date.UTC(y,m,0)).getUTCDate();
-    return dim-new Date(Date.UTC(y,m-1,dim)).getUTCDay();
+  if(f!==""||row.length){row.push(f);rows.push(row);}
+  return rows;
+}
+function toObjects(rows){
+  if(!rows.length)return [];
+  var head=rows[0].map(function(h){return h.trim().toLowerCase();});
+  return rows.slice(1).filter(function(r){return r.some(function(x){return x.trim()!=="";});}).map(function(r){
+    var o={};head.forEach(function(h,k){if(h)o[h]=(r[k]||"").trim();});return o;
+  });
+}
+function fetchText(url){
+  return fetch(url,{cache:"no-store"}).then(function(r){
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    return r.text();
+  }).then(function(t){
+    if(/^\s*</.test(t))throw new Error("Not a CSV");
+    return t;
+  });
+}
+function loadSource(name,cb){
+  var tries=[];
+  if(SRC[name]){
+    tries.push(function(){return fetchText(SRC[name]).then(function(t){try{localStorage.setItem("ro_"+name,t);}catch(e){}return t;});});
+    tries.push(function(){var c=null;try{c=localStorage.getItem("ro_"+name);}catch(e){}return c?Promise.resolve(c):Promise.reject(new Error("no cache"));});
   }
+  tries.push(function(){return fetchText(LOCAL[name]);});
+  (function next(i){
+    if(i>=tries.length){cb(null);return;}
+    tries[i]().then(function(t){cb(toObjects(parseCSV(t)));},function(){next(i+1);});
+  })(0);
+}
 
-  function render(){
-    var n=londonNow(),h=HOURS[n.day];
-    var hero=document.getElementById("hero");
-    var head=document.getElementById("status-head");
-    var sub=document.getElementById("status-sub");
-    var isOpen=false;
+/* ---------- opening hours ---------- */
+function matchRow(rows,dt){
+  var n=num(dt),dow=dowOf(dt),best=null,bestScore=-1;
+  rows.forEach(function(r){
+    if(hidden(r))return;
+    var f=dnum(r["applies from"]),u=dnum(r["applies until"]);
+    if(f!==f||u!==u){warn("Unreadable date in Hours row: "+JSON.stringify(r));return;}
+    if(f!==null&&n<f)return;
+    if(u!==null&&n>u)return;
+    if(!dayOk(r.days,dow)||!weekOk(r.week,dt))return;
+    var score=((f!==null||u!==null)?2:0)+((r.week||"").trim()?1:0);
+    if(score>=bestScore){best=r;bestScore=score;}
+  });
+  return best?{row:best,special:bestScore>=2}:null;
+}
+function hoursFor(rows,dt){
+  var m=matchRow(rows,dt);
+  if(!m)return {closed:true,special:false,row:null,note:""};
+  var r=m.row,note=(r.note||"").trim();
+  if(yes(r.closed))return {closed:true,special:m.special,row:r,note:note};
+  var open=tnum(r.opens);
+  if(open===null||open!==open){warn("Hours row has no readable Opens time: "+JSON.stringify(r));return {closed:true,special:m.special,row:r,note:note};}
+  var close=tnum(r.closes);if(close!==close)close=null;
+  if(close!==null&&close<=open)close+=24;
+  var ff=tnum(r["food from"]),ft=tnum(r["food to"]),food=null;
+  if(ff!==null&&ft!==null&&ff===ff&&ft===ft){if(ft<=ff)ft+=24;food=[ff,ft];}
+  return {closed:false,special:m.special,row:r,open:open,close:close,food:food,foodLabel:(r["food label"]||"").trim()||"Food",note:note};
+}
+function fmtRange(a,b){
+  var sa=fmtT(a),sb=fmtT(b);
+  if(/(am|pm)$/.test(sa)&&sa.slice(-2)===sb.slice(-2))sa=sa.slice(0,-2);
+  return sa+"–"+sb;
+}
+function hoursText(h){
+  if(h.closed)return "Closed";
+  return fmtT(h.open)+" – "+(h.close===null?"close":fmtT(h.close));
+}
+function hoursDetail(h){
+  if(h.closed)return h.note;
+  var bits=[];
+  if(h.food)bits.push(h.foodLabel+" "+fmtRange(h.food[0],h.food[1]));
+  if(h.note)bits.push(h.note);
+  return bits.join(" · ");
+}
 
-    if(n.day===0&&n.d===lastSunday(n.y,n.m)){
-      h={open:12,close:20,food:[12,17],foodLabel:"Sunday lunch until 5pm"};
+var nextLunch=null;
+function findNextLunch(rows,n){
+  for(var k=0;k<400;k++){
+    var dt=addDays(n,k),h=hoursFor(rows,dt);
+    if(!h.closed&&h.food&&/sunday lunch/i.test(h.foodLabel)){
+      if(k===0&&n.t>=h.food[1])continue;
+      return dt;
     }
-    if(h){
-      var close=h.close===null?23.99:h.close;
-      if(n.t>=h.open&&n.t<close){
-        isOpen=true;
-        head.textContent="Open now.";
-        if(h.food&&n.t>=h.food[0]&&n.t<h.food[1]){
-          sub.textContent=h.foodLabel?h.foodLabel+". Roasts with all the trimmings.":"Kitchen open until "+fmt(h.food[1])+". Pies, curries and burgers.";
-        }else if(h.food&&n.t<h.food[0]){
-          sub.textContent="Food from "+fmt(h.food[0])+". The pumps are already pulling.";
-        }else if(h.food){
-          sub.textContent="Kitchen's finished for the night. Pints are still on.";
-        }else{
-          sub.textContent=h.noFoodOpen;
-        }
-      }else if(n.t<h.open){
-        head.textContent="Opens at "+fmt(h.open)+" today.";
-        sub.textContent=h.food?"Food served from "+fmt(h.food[0])+". Call to book a table.":h.noFoodOpens;
-      }
-    }
-    if(!isOpen&&!(h&&n.t<h.open)){
-      var next=null,i,d;
-      for(i=1;i<=7;i++){d=(n.day+i)%7;if(HOURS[d]){next={d:d,i:i};break;}}
-      head.textContent=next.i===1?"Back tomorrow at "+fmt(HOURS[next.d].open)+".":"Back "+NAMES[next.d]+" at "+fmt(HOURS[next.d].open)+".";
-      sub.textContent=(h?"Closed for the night.":"Closed today.")+" Cask ale, home-cooked food and two beer gardens.";
-    }
-    hero.classList.toggle("is-open",isOpen);
-
-    document.querySelectorAll("#hours-list li").forEach(function(r){
-      r.classList.toggle("today",parseInt(r.getAttribute("data-day"),10)===n.day);
-    });
-
-    var el=document.getElementById("next-lunch");
-    if(el){
-      var y=n.y,m=n.m,ls=lastSunday(y,m);
-      if(n.d>ls||(n.d===ls&&n.t>=17)){m++;if(m>12){m=1;y++;}ls=lastSunday(y,m);}
-      el.textContent=ls+" "+MONTHS[m-1];
-    }
-
-    var today=n.y*10000+n.m*100+n.d,band=document.getElementById("offer-band"),show=null;
-    OFFERS.forEach(function(o){if(today<=o.until&&!show)show=o;});
-    if(show){document.getElementById("offer-text").textContent=show.text;band.hidden=false;}else{band.hidden=true;}
   }
-  render();
-  setInterval(render,60000);
+  return null;
+}
 
-  /* ---- Pub sign swings once when it scrolls into view ---- */
-  var sp=document.getElementById("signpost");
-  if(sp){
-    if("IntersectionObserver" in window){
-      new IntersectionObserver(function(es,ob){es.forEach(function(e){if(e.isIntersecting){sp.classList.add("in");ob.disconnect();}});},{threshold:.5}).observe(sp);
-    }else{sp.classList.add("in");}
+function renderStatus(){
+  var rows=DATA.hours||HOURS_FALLBACK;
+  var n=londonNow(),hero=$("hero"),headEl=$("status-head"),subEl=$("status-sub");
+  var h=hoursFor(rows,n),y=hoursFor(rows,addDays(n,-1));
+  var isOpen=false,head="",sub="";
+
+  if(!y.closed&&y.close!==null&&y.close>24&&n.t<y.close-24){
+    isOpen=true;head="Open now.";sub="Open late, until "+fmtT(y.close)+".";
+  }else if(!h.closed){
+    var closeV=h.close===null?23.99:h.close;
+    if(n.t>=h.open&&n.t<closeV){
+      isOpen=true;head="Open now.";
+      if(h.food&&n.t>=h.food[0]&&n.t<h.food[1]){
+        sub=/sunday lunch/i.test(h.foodLabel)?h.foodLabel+" until "+fmtT(h.food[1])+". Roasts with all the trimmings."
+          :h.foodLabel==="Food"?"Kitchen open until "+fmtT(h.food[1])+". Pies, curries and burgers."
+          :h.foodLabel+" until "+fmtT(h.food[1])+".";
+      }else if(h.food&&n.t<h.food[0]){sub=h.foodLabel+" from "+fmtT(h.food[0])+". The pumps are already pulling.";}
+      else if(h.food){sub="Kitchen's finished for the night. Pints are still on.";}
+      else if(n.dow===0&&nextLunch){sub="Drinks today. Next Sunday lunch: "+nextLunch.d+" "+MONTHS[nextLunch.m-1]+".";}
+      else{sub="Drinks only. Cask ale and a good gin list.";}
+    }else if(n.t<h.open){
+      head="Opens at "+fmtT(h.open)+" today.";
+      sub=h.food?h.foodLabel+" served from "+fmtT(h.food[0])+". Call to book a table.":"Drinks only. Cask ale and a good gin list.";
+    }
   }
+  if(!isOpen&&!head){
+    var next=null,k,dt,hh;
+    for(k=1;k<=21&&!next;k++){dt=addDays(n,k);hh=hoursFor(rows,dt);if(!hh.closed)next={k:k,dt:dt,h:hh};}
+    if(next){
+      head=next.k===1?"Back tomorrow at "+fmtT(next.h.open)+".":next.k<7?"Back "+DAYN[dowOf(next.dt)]+" at "+fmtT(next.h.open)+".":"Back "+shortDate(next.dt)+" at "+fmtT(next.h.open)+".";
+    }else head="Closed for now.";
+    sub=(h.closed&&h.note)?h.note+".":(h.closed?"Closed today.":"Closed for the night.")+" Cask ale, home-cooked food and two beer gardens.";
+  }
+  headEl.textContent=head;subEl.textContent=sub;
+  hero.classList.toggle("is-open",isOpen);
+}
+
+function renderHours(){
+  var list=$("hours-list");if(!list)return;
+  var rows=DATA.hours||HOURS_FALLBACK;
+  var cd=contentDate(),real=londonNow(),i,dt,h,li;
+  var monday=addDays(cd,-((dowOf(cd)+6)%7));
+  clear(list);
+  for(i=0;i<7;i++){
+    dt=addDays(monday,i);h=hoursFor(rows,dt);
+    li=el("li",(h.closed?"closed ":"")+(h.special?"special ":"")+(num(dt)===num(real)?"today":""));
+    var d=el("span","d",DAYN[dowOf(dt)]);
+    if(h.special)d.appendChild(el("span","n",dt.d+" "+MONTHS[dt.m-1].slice(0,3)));
+    var t=el("span","h",hoursText(h)),det=hoursDetail(h);
+    if(det)t.appendChild(el("span","n",det));
+    li.appendChild(d);li.appendChild(t);list.appendChild(li);
+  }
+  /* Coming up: dated rows in the next 60 days, announced early enough */
+  var box=$("hours-upcoming"),ul=box&&box.querySelector("ul"),items=[],cur=null,k,any=false;
+  if(!box)return;
+  for(k=1;k<=60;k++){
+    dt=addDays(cd,k);h=hoursFor(rows,dt);
+    if(!h.special||!h.row){cur=null;continue;}
+    var ann=dnum(h.row["announce from"]),frm=dnum(h.row["applies from"]),annN=0;
+    if(ann!==null&&ann===ann)annN=ann;
+    else if(frm!==null&&frm===frm)annN=num(addDays(toDt(frm),-28));
+    if(num(cd)<annN){cur=null;continue;}
+    if(cur&&cur.row===h.row&&cur.k===k-1){cur.end=dt;cur.k=k;}
+    else{cur={row:h.row,start:dt,end:dt,k:k,h:h};items.push(cur);}
+  }
+  clear(ul);
+  items.slice(0,8).forEach(function(it){
+    var s=it.start,e=it.end,label=shortDate(s);
+    if(num(s)!==num(e))label=(s.m===e.m?DAYN[dowOf(s)].slice(0,3)+" "+s.d:shortDate(s))+" – "+shortDate(e);
+    var li2=el("li");li2.appendChild(el("b",null,label));
+    var txt=hoursText(it.h),det=hoursDetail(it.h);
+    li2.appendChild(document.createTextNode(": "+txt+(det?". "+det:"")));
+    ul.appendChild(li2);any=true;
+  });
+  box.hidden=!any;
+}
+
+/* ---------- menu, drinks, offers ---------- */
+function live(rows,cd,fk,uk){
+  var n=num(cd),dow=dowOf(cd);
+  return rows.filter(function(r){return !hidden(r)&&inWindow(r,fk,uk,n)&&dayOk(r.days,dow);});
+}
+function price(p){
+  p=(p||"").trim();if(!p)return "";
+  if(/^\d+(\.\d{1,2})?$/.test(p))return "£"+(+p).toFixed(2);
+  return p;
+}
+function tagsOf(r){return ((r.dietary||r.tags||"")).split(/[\s,\/]+/).filter(Boolean);}
+function itemLi(r){
+  var li=el("li",soldOut(r)?"so":"");
+  var left=el("div");
+  left.appendChild(el("span","nm",r.item));
+  tagsOf(r).forEach(function(t){left.appendChild(el("span","tag",t.toUpperCase()));});
+  if(soldOut(r))left.appendChild(el("span","tag sold","Sold out"));
+  if(r.description)left.appendChild(el("small",null,r.description));
+  li.appendChild(left);
+  var p=price(r.price);
+  if(p)li.appendChild(el("span","p",p));
+  return li;
+}
+function groupBySection(rows){
+  var order=[],map={};
+  rows.forEach(function(r){
+    var s=(r.section||"").trim()||"Menu";
+    if(!map[s]){map[s]={name:s,notes:[],items:[]};order.push(map[s]);}
+    if(!r.item)map[s].notes.push(r);else map[s].items.push(r);
+  });
+  return order;
+}
+function sectionNode(g){
+  var d=el("div"),i;
+  d.appendChild(el("h3",null,g.name));
+  g.notes.forEach(function(r){d.appendChild(el("p","note",r.description));});
+  if(g.items.length){var ul=el("ul");g.items.forEach(function(r){ul.appendChild(itemLi(r));});d.appendChild(ul);}
+  return d;
+}
+
+function renderMenu(){
+  var wrap=$("menu-board"),spec=$("menu-special");if(!wrap||!DATA.menu)return;
+  var cd=contentDate(),rows=live(DATA.menu,cd,"show from","show until");
+  var board=rows.filter(function(r){return !/^sun/i.test(r.where||"board");});
+  var hl=board.filter(function(r){return yes(r.highlight);});
+  var rest=board.filter(function(r){return !yes(r.highlight);});
+
+  clear(spec);
+  hl.forEach(function(r){
+    var d=el("div","special");
+    d.appendChild(el("span",null,r.item));
+    var p=price(r.price);if(p)d.appendChild(el("span",null,p));
+    if(r.description)d.appendChild(el("small",null,r.description));
+    spec.appendChild(d);
+  });
+
+  clear(wrap);
+  if(!rest.length){
+    if(!hl.length)wrap.appendChild(el("p","note","The menu is being updated. Please call 01765 677198 or see our Facebook page for today's food."));
+    return;
+  }
+  var groups=groupBySection(rest);
+  var weights=groups.map(function(g){return g.items.length+g.notes.length+2;});
+  var total=weights.reduce(function(a,b){return a+b;},0),acc=0,bestK=0,bestDiff=1e9;
+  for(var k=1;k<=groups.length;k++){
+    acc+=weights[k-1];
+    var diff=Math.abs(acc-(total-acc));
+    if(diff<bestDiff){bestDiff=diff;bestK=k;}
+  }
+  var c1=el("div"),c2=el("div");
+  groups.forEach(function(g,i){(i<bestK?c1:c2).appendChild(sectionNode(g));});
+  wrap.appendChild(c1);if(c2.childNodes.length)wrap.appendChild(c2);
+}
+
+function renderSunday(){
+  var ul=$("roast-list");if(!ul||!DATA.menu)return;
+  var cd=contentDate(),rows=live(DATA.menu,cd,"show from","show until").filter(function(r){return /^sun/i.test(r.where||"")&&r.item;});
+  clear(ul);
+  if(!rows.length){ul.appendChild(el("li",null,"Please ask what's on the roast this month."));return;}
+  rows.forEach(function(r){
+    var li=el("li",soldOut(r)?"so":"");
+    li.appendChild(el("span","nm",r.item));
+    tagsOf(r).forEach(function(t){li.appendChild(el("span","tag",t.toUpperCase()));});
+    if(soldOut(r))li.appendChild(el("span","tag sold","Sold out"));
+    ul.appendChild(li);
+  });
+}
+
+function renderNextLunch(){
+  var box=$("next-wrap"),out=$("next-lunch");if(!box||!out)return;
+  var rows=DATA.hours||HOURS_FALLBACK,n=londonNow();
+  var dt=findNextLunch(rows,n);nextLunch=dt;
+  if(!dt){box.hidden=true;return;}
+  out.textContent=dt.d+" "+MONTHS[dt.m-1];
+  box.hidden=false;
+}
+
+function renderDrinks(){
+  var box=$("drinks-list");if(!box||!DATA.drinks)return;
+  var rows=live(DATA.drinks,contentDate(),"show from","show until").filter(function(r){return r.item;});
+  if(!rows.length)return;
+  clear(box);
+  groupBySection(rows).forEach(function(g){box.appendChild(sectionNode(g));});
+}
+
+function renderOffers(){
+  var band=$("offer-band"),list=$("offer-list");if(!band||!list)return;
+  var rows=DATA.offers?live(DATA.offers,contentDate(),"show from","show until").filter(function(r){return r.text;}):[];
+  clear(list);
+  rows.forEach(function(r){list.appendChild(el("p",null,r.text));});
+  band.hidden=!rows.length;
+}
+
+function renderAll(){
+  renderNextLunch();
+  renderStatus();
+  renderHours();
+  renderMenu();
+  renderSunday();
+  renderDrinks();
+  renderOffers();
+}
+
+/* ---------- start-up ---------- */
+function got(name){return function(rows){DATA[name]=rows;renderAll();};}
+renderAll();                          /* immediately, with built-in hours */
+["hours","menu","drinks","offers"].forEach(function(n){loadSource(n,got(n));});
+
+var lastDay=num(londonNow());
+setInterval(function(){
+  var d=num(londonNow());
+  if(d!==lastDay){lastDay=d;renderAll();}else{renderStatus();}
+},60000);
+setInterval(function(){                /* pick up sheet changes without a reload */
+  ["hours","menu","drinks","offers"].forEach(function(n){loadSource(n,function(rows){if(rows){DATA[n]=rows;}});});
+  setTimeout(renderAll,4000);
+},10*60000);
+
+if(PREVIEW){
+  var pv=el("div","preview","Preview: this is how the site will look on "+shortDate(PREVIEW)+" "+PREVIEW.y+". Remove ?date= from the address to see today.");
+  document.body.appendChild(pv);
+}
+
+/* ---------- Pub sign swings once when it scrolls into view ---------- */
+var sp=$("signpost");
+if(sp){
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(es,ob){es.forEach(function(e){if(e.isIntersecting){sp.classList.add("in");ob.disconnect();}});},{threshold:.5}).observe(sp);
+  }else{sp.classList.add("in");}
+}
 })();
 </script>
 </body>

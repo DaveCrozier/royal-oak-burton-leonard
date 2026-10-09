@@ -1,0 +1,9 @@
+Days,Week,Opens,Closes,Food from,Food to,Food label,Closed,Note,Applies from,Applies until,Announce from,Status
+"Mon, Tue",,,,,,,Yes,,,,,Live
+Wed,,17:00,22:00,,,,,Drinks only,,,,Live
+Thu,,17:00,,17:00,20:00,Food,,"Fish & chips night, £9.95",,,,Live
+Fri,,15:00,,17:00,20:00,Food,,,,,,Live
+Sat,,15:00,23:00,17:00,20:00,Food,,,,,,Live
+Sun,,12:00,20:00,,,,,,,,,Live
+Sun,Last,12:00,20:00,12:00,17:00,Sunday lunch,,,,,,Live
+Thu,,12:00,15:00,,,,,"EXAMPLE (hidden): Christmas Eve hours. Copy this row, change it and set Status to Live.",2026-12-24,2026-12-24,2026-12-01,Hidden
