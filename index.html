@@ -227,6 +227,27 @@ li.so .nm,li.so small{text-decoration:line-through;text-decoration-thickness:1px
 .upcoming li{padding:.65rem .7rem;border-bottom:1px solid rgba(21,17,14,.25);box-shadow:inset 6px 0 0 var(--geranium)}
 .upcoming b{font-family:var(--display);font-weight:800}
 .preview{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--gold);color:var(--timber);padding:.65rem 1rem;font-weight:600;text-align:center;font-size:.95rem}
+/* ---------- What's on + walks ---------- */
+.events{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:1rem;max-width:860px}
+.events li{display:grid;grid-template-columns:5.4rem 1fr;gap:1.2rem;background:#fff;border:2px solid var(--timber);padding:1rem 1.2rem 1rem 1rem;align-items:start}
+.ev-date{background:var(--timber);color:#fff;text-align:center;padding:.6rem .2rem;line-height:1}
+.ev-date b{display:block;font-family:var(--display);font-weight:800;font-size:2rem;letter-spacing:-.03em}
+.ev-date span{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem;color:#CFC9BC}
+.ev-body h3{font-family:var(--display);font-weight:800;font-size:1.35rem;margin:0 0 .2rem;letter-spacing:-.01em}
+.ev-meta{margin:0 0 .4rem;color:var(--muted);font-size:.95rem}
+.ev-body p{margin:.2rem 0 0}
+.ev-tag{display:inline-block;background:var(--gold);color:var(--timber);font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .55rem;border-radius:999px;margin-left:.5rem;vertical-align:middle}
+.events-empty{margin:1.6rem 0 0;padding:1rem 1.2rem;border:2px dashed var(--timber);max-width:860px}
+.walk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem;margin:2rem 0 1.6rem}
+.walk{background:#fff;border:2px solid var(--timber);padding:1.3rem 1.3rem 1.4rem}
+.walk h3{font-family:var(--display);font-weight:800;font-size:1.3rem;margin:0 0 .5rem;letter-spacing:-.01em}
+.walk .stats{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 .8rem;padding:0;list-style:none}
+.walk .stats li{background:var(--timber);color:#fff;font-size:.8rem;font-weight:600;padding:.2rem .6rem;border-radius:999px}
+.walk p{margin:0}
+.walks .more{max-width:860px}
+.walks .more p{margin:.5rem 0}
+.walks .src{font-size:.9rem;color:var(--muted)}
+@media (max-width:480px){.events li{grid-template-columns:4.2rem 1fr;gap:.8rem}}
 .visit h2{max-width:12ch}
 address{font-style:normal;font-size:1.25rem;line-height:1.5;margin:0 0 1.2rem}
 .tel{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,5.2vw,3.4rem);letter-spacing:-.035em;text-decoration:none;display:inline-block;margin-bottom:1.2rem;line-height:1}
@@ -255,6 +276,8 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
         <li><a href="#sunday">Sunday lunch</a></li>
         <li><a href="#drink">Drinks</a></li>
         <li><a href="#garden">Garden</a></li>
+        <li><a href="#events">What's on</a></li>
+        <li><a href="#walks">Walks &amp; rides</a></li>
         <li><a href="#visit">Hours &amp; find us</a></li>
       </ul>
     </nav>
@@ -423,6 +446,46 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
     </div>
   </section>
 
+  <!-- WHAT'S ON -->
+  <section class="panel braced pad" id="events" aria-labelledby="events-h">
+    <div class="wrap">
+      <h2 id="events-h">What's on.</h2>
+      <p class="lead">Summer BBQs in the garden, and family fun days with a bouncy castle for the little ones. Dates go up here as soon as they're confirmed.</p>
+      <ul class="events" id="events-list" aria-label="Upcoming events"></ul>
+      <p class="events-empty" id="events-empty">Next dates coming soon. Follow us on <a href="https://www.facebook.com/RoyalOakBurtonLeonard">Facebook</a> or call <a href="tel:01765677198">01765 677198</a>.</p>
+    </div>
+  </section>
+
+  <!-- WALKS AND RIDES -->
+  <section class="panel braced pad walks" id="walks" aria-labelledby="walks-h">
+    <div class="wrap">
+      <h2 id="walks-h">Walk here. Earn the pint.</h2>
+      <p class="lead">Burton Leonard sits on the Ripon Rowel Walk, with farmland, canal towpath and quiet lanes right on the doorstep. Dogs are welcome in our beer gardens.</p>
+      <div class="walk-grid">
+        <article class="walk">
+          <h3>Burton Leonard circular</h3>
+          <ul class="stats"><li>6.5 miles</li><li>Moderate</li><li>About 2&frac14; hours</li></ul>
+          <p>Across farmland to South Stainley, onto the Ripon Rowel path, and back via Copgrove. There is roadside parking in the village.</p>
+        </article>
+        <article class="walk">
+          <h3>Ripon Canal</h3>
+          <ul class="stats"><li>2 miles</li><li>Moderate</li></ul>
+          <p>A stretch of towpath beside the Ripon Canal, with boats, birds and no traffic.</p>
+        </article>
+        <article class="walk">
+          <h3>Ripon Rowel Walk, first leg</h3>
+          <ul class="stats"><li>10 miles, one way</li><li>Easy to moderate</li></ul>
+          <p>Ripon Minster to South Stainley along the canal, the River Ure at Oxclose Lock and Bishop Monkton, then through Burton Leonard past the village green. The No. 36 bus runs back to Ripon.</p>
+        </article>
+      </div>
+      <div class="more">
+        <p><strong>On two wheels:</strong> quiet lanes link Burton Leonard, Bishop Monkton and Copgrove. <a href="https://www.komoot.com/guide/2776737/cycling-around-bishop-monkton">Komoot's cycling guide around Bishop Monkton</a> is a good place to start planning a loop.</p>
+        <p><strong>Further afield:</strong> Fountains Abbey, Newby Hall, Hackfall Woods and Markenfield Hall are all on or near the Rowel.</p>
+        <p class="src">Route details from <a href="https://www.yorkshire.com/burton-leonard">Yorkshire.com</a> and <a href="https://www.walkingbritain.co.uk/walk-2403-print">Walking Britain</a>. Check the route and conditions before you set out.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- VISIT -->
   <section class="panel braced pad visit" id="visit" aria-labelledby="visit-h">
     <div class="wrap split" style="align-items:start">
@@ -478,8 +541,8 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
    4. what is already written in this page
    ===================================================================== */
 var SRC=window.ROYAL_OAK_SOURCES||{};
-var LOCAL={hours:"data/hours.csv",menu:"data/menu.csv",drinks:"data/drinks.csv",offers:"data/offers.csv"};
-var DATA={hours:null,menu:null,drinks:null,offers:null};
+var LOCAL={hours:"data/hours.csv",menu:"data/menu.csv",drinks:"data/drinks.csv",offers:"data/offers.csv",events:"data/events.csv"};
+var DATA={hours:null,menu:null,drinks:null,offers:null,events:null};
 
 /* Built-in opening hours, used only if no sheet or CSV can be read. Same shape as the Hours tab. */
 var HOURS_FALLBACK=[
@@ -888,6 +951,38 @@ function renderOffers(){
   band.hidden=!rows.length;
 }
 
+/* ---------- events (What's on) ---------- */
+function evParts(n){var y=Math.floor(n/10000),m=Math.floor(n/100)%100,d=n%100;return {y:y,m:m,d:d,dow:new Date(Date.UTC(y,m-1,d)).getUTCDay()};}
+function renderEvents(){
+  var list=$("events-list"),empty=$("events-empty");if(!list||!empty)return;
+  var n=num(contentDate()),rows=[];
+  (DATA.events||[]).forEach(function(r){
+    if(hidden(r)||!r.event)return;
+    var d=dnum(r.date),e=dnum(r["end date"]),f=dnum(r["show from"]);
+    if(d!==d||e!==e||f!==f||d===null){warn("Unreadable or missing date in Events row: "+JSON.stringify(r));return;}
+    var last=e!==null?e:d;
+    if(n>last)return;
+    if(f!==null&&n<f)return;
+    rows.push({r:r,d:d,e:e});
+  });
+  rows.sort(function(a,b){return a.d-b.d;});
+  clear(list);
+  rows.forEach(function(x){
+    var p=evParts(x.d),li=el("li"),dt=el("div","ev-date");
+    dt.appendChild(el("b",null,String(p.d)));dt.appendChild(el("span",null,MONTHS[p.m-1].slice(0,3)));
+    var body=el("div","ev-body"),h=el("h3",null,x.r.event);
+    if(/^(yes|y|true)$/i.test((x.r["family friendly"]||"").trim()))h.appendChild(el("span","ev-tag","Family friendly"));
+    body.appendChild(h);
+    var when=DAYN[p.dow]+" "+p.d+" "+MONTHS[p.m-1];
+    if(x.e!==null&&x.e!==x.d){var q=evParts(x.e);when=DAYN[p.dow].slice(0,3)+" "+p.d+" "+MONTHS[p.m-1].slice(0,3)+" to "+DAYN[q.dow].slice(0,3)+" "+q.d+" "+MONTHS[q.m-1].slice(0,3);}
+    var meta=[when];if(x.r.time)meta.push(x.r.time);if(x.r["booking note"])meta.push(x.r["booking note"]);
+    body.appendChild(el("p","ev-meta",meta.join(" \u00b7 ")));
+    if(x.r.description)body.appendChild(el("p",null,x.r.description));
+    li.appendChild(dt);li.appendChild(body);list.appendChild(li);
+  });
+  empty.hidden=rows.length>0;
+}
+
 function renderAll(){
   renderNextLunch();
   renderStatus();
@@ -896,12 +991,13 @@ function renderAll(){
   renderSunday();
   renderDrinks();
   renderOffers();
+  renderEvents();
 }
 
 /* ---------- start-up ---------- */
 function got(name){return function(rows){DATA[name]=rows;renderAll();};}
 renderAll();                          /* immediately, with built-in hours */
-["hours","menu","drinks","offers"].forEach(function(n){loadSource(n,got(n));});
+["hours","menu","drinks","offers","events"].forEach(function(n){loadSource(n,got(n));});
 
 var lastDay=num(londonNow());
 setInterval(function(){
@@ -909,7 +1005,7 @@ setInterval(function(){
   if(d!==lastDay){lastDay=d;renderAll();}else{renderStatus();}
 },60000);
 setInterval(function(){                /* pick up sheet changes without a reload */
-  ["hours","menu","drinks","offers"].forEach(function(n){loadSource(n,function(rows){if(rows){DATA[n]=rows;}});});
+  ["hours","menu","drinks","offers","events"].forEach(function(n){loadSource(n,function(rows){if(rows){DATA[n]=rows;}});});
   setTimeout(renderAll,4000);
 },10*60000);
 

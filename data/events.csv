@@ -1,0 +1,3 @@
+Event,Date,End date,Time,Description,Family friendly,Booking note,Show from,Status
+EXAMPLE: Summer BBQ in the garden,2027-06-26,,From 2pm,"EXAMPLE (hidden): copy this row, change it and set Status to Live. Say what is on the BBQ menu here.",,Booking advised,2027-05-01,Hidden
+EXAMPLE: Family fun day,2027-07-24,,12 to 5pm,"EXAMPLE (hidden): bouncy castle in the garden for the little ones. Add ages, prices and anything else families need to know.",Yes,Just turn up,2027-06-15,Hidden
