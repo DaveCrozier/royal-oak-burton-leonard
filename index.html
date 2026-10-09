@@ -84,7 +84,30 @@ main{padding:0 var(--gap)}
 .nav ul a:hover{text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--gold)}
 .call{background:var(--geranium);color:#fff;text-decoration:none;font-weight:600;padding:.62rem 1.15rem;border-radius:999px;white-space:nowrap}
 .call:hover{background:#d93248}
-@media (max-width:860px){.nav ul{display:none}}
+.nav nav{order:2}.call{order:3}.nav-toggle{order:4}
+.nav-toggle{display:none;background:transparent;color:var(--plaster);border:2px solid var(--plaster);border-radius:10px;width:46px;height:42px;padding:0;cursor:pointer;align-items:center;justify-content:center;flex:none}
+.nav-toggle:hover{border-color:var(--gold)}
+.nav-toggle .bars,.nav-toggle .bars::before,.nav-toggle .bars::after{display:block;width:20px;height:2px;background:currentColor;border-radius:2px;transition:transform .2s,opacity .2s}
+.nav-toggle .bars{position:relative}
+.nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0}
+.nav-toggle .bars::before{top:-6px}
+.nav-toggle .bars::after{top:6px}
+.nav-toggle[aria-expanded="true"] .bars{background:transparent}
+.nav-toggle[aria-expanded="true"] .bars::before{top:0;transform:rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .bars::after{top:0;transform:rotate(-45deg)}
+@media (max-width:860px){
+  .nav .wrap{gap:.7rem}
+  .nav .brand{margin-right:auto}
+  .js .nav-toggle{display:inline-flex}
+  .js .nav ul{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:var(--timber);border-top:1px solid #3a322b;border-bottom:4px solid var(--gold);box-shadow:0 18px 30px rgba(0,0,0,.35);padding:.4rem 0 .6rem}
+  .js .nav ul.open{display:flex}
+  .js .nav ul a{display:block;padding:.95rem clamp(1rem,4vw,2rem);font-size:1.1rem}
+  .js .nav ul a:hover{background:#221c17;text-decoration:none}
+  html:not(.js) .nav ul{display:none}
+}
+@media (max-width:520px){.call .long{display:none}.call{padding:.62rem .95rem}}
+@media (max-width:400px){.brand{font-size:1.3rem;white-space:nowrap}.brand small{display:none}.call{font-size:.9rem;padding:.55rem .8rem}}
+@media (max-width:360px){.nav .wrap{gap:.45rem}.brand{font-size:1.1rem}.call{font-size:.82rem;padding:.5rem .65rem}.nav-toggle{width:40px}}
 
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:clamp(560px,88svh,880px);overflow:hidden;background:var(--timber);color:#fff;display:flex;align-items:flex-end}
@@ -267,11 +290,14 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<script>document.documentElement.className+=" js";</script>
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="The Royal Oak, Burton Leonard - top of page">The Royal Oak<small>Burton Leonard, near Harrogate</small></a>
+    <a class="call" href="tel:01765677198"><span class="long">Call </span>01765 677198</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Menu"><span class="bars"></span></button>
     <nav aria-label="Main">
-      <ul>
+      <ul id="nav-list">
         <li><a href="#food">Menu</a></li>
         <li><a href="#sunday">Sunday lunch</a></li>
         <li><a href="#drink">Drinks</a></li>
@@ -281,7 +307,6 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
         <li><a href="#visit">Hours &amp; find us</a></li>
       </ul>
     </nav>
-    <a class="call" href="tel:01765677198">Call 01765 677198</a>
   </div>
 </header>
 
@@ -1013,6 +1038,18 @@ if(PREVIEW){
   var pv=el("div","preview","Preview: this is how the site will look on "+shortDate(PREVIEW)+" "+PREVIEW.y+". Remove ?date= from the address to see today.");
   document.body.appendChild(pv);
 }
+
+/* ---------- Mobile menu ---------- */
+(function(){
+  var btn=document.querySelector(".nav-toggle"),list=$("nav-list");
+  if(!btn||!list)return;
+  function set(open){list.classList.toggle("open",open);btn.setAttribute("aria-expanded",open?"true":"false");}
+  btn.addEventListener("click",function(e){e.stopPropagation();set(!list.classList.contains("open"));});
+  list.addEventListener("click",function(e){if(e.target.tagName==="A")set(false);});
+  document.addEventListener("click",function(e){if(!list.contains(e.target))set(false);});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"){set(false);btn.focus();}});
+  window.addEventListener("resize",function(){if(window.innerWidth>860)set(false);});
+})();
 
 /* ---------- Pub sign swings once when it scrolls into view ---------- */
 var sp=$("signpost");
