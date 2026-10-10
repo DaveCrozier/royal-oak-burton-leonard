@@ -432,7 +432,7 @@ main{padding-top:var(--gap)}
 .ev-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
 .ev-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;opacity:.22;filter:saturate(.85) brightness(1.1);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 75%);mask-image:linear-gradient(90deg,transparent 0%,#000 75%)}
 .events li.has-art .ev-meta{color:#4a4a50}
-.events li.has-menu .ev-bg img{-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 42%);mask-image:linear-gradient(180deg,#000 0%,transparent 42%)}
+.events li.has-menu .ev-bg img{object-position:right top;height:60%;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 55%,transparent 100%)}
 .events li .xmas-menu li{background:transparent;box-shadow:none}
 .ev-menu{padding:0 1.4rem 1.6rem}
 .ev-menu .xp{background:var(--timber)}
@@ -569,8 +569,8 @@ footer .nap a{color:var(--accent)}
 
       <div id="menu-special">
       <div class="special">
-        <span>Thursday: fish &amp; chips night</span><span>&pound;9.95</span>
-        <small>Fish, chips, mushy peas, bread and butter. Served 5 to 8pm.</small>
+        <span>555 evening</span>
+        <small>Five mini meals, &pound;5 each, from 5pm.</small>
       </div>
       </div>
 
@@ -704,7 +704,7 @@ footer .nap a{color:var(--accent)}
           <li data-day="1" class="closed"><span class="d">Monday</span><span class="h">Closed</span></li>
           <li data-day="2" class="closed"><span class="d">Tuesday</span><span class="h">Closed</span></li>
           <li data-day="3"><span class="d">Wednesday</span><span class="h">5pm &ndash; 10pm<span class="n">Drinks only</span></span></li>
-          <li data-day="4"><span class="d">Thursday</span><span class="h">5pm &ndash; close<span class="n">Food 5&ndash;8pm &middot; fish &amp; chips night, &pound;9.95</span></span></li>
+          <li data-day="4"><span class="d">Thursday</span><span class="h">5pm &ndash; close<span class="n">Food 5&ndash;8pm</span></span></li>
           <li data-day="5"><span class="d">Friday</span><span class="h">3pm &ndash; close<span class="n">Food 5&ndash;8pm</span></span></li>
           <li data-day="6"><span class="d">Saturday</span><span class="h">3pm &ndash; 11pm<span class="n">Food 5&ndash;8pm</span></span></li>
           <li data-day="0"><span class="d">Sunday</span><span class="h">12pm &ndash; 8pm<span class="n">Sunday lunch 12&ndash;5pm on the last Sunday of the month</span></span></li>
@@ -796,7 +796,7 @@ var DATA={hours:null,menu:null,drinks:null,offers:null,events:null,feature:null,
 var HOURS_FALLBACK=[
   {days:"Mon, Tue",closed:"Yes"},
   {days:"Wed",opens:"17:00",closes:"22:00",note:"Drinks only"},
-  {days:"Thu",opens:"17:00","food from":"17:00","food to":"20:00","food label":"Food",note:"Fish & chips night, £9.95"},
+  {days:"Thu",opens:"17:00","food from":"17:00","food to":"20:00","food label":"Food",note:""},
   {days:"Fri",opens:"15:00","food from":"17:00","food to":"20:00","food label":"Food"},
   {days:"Sat",opens:"15:00",closes:"23:00","food from":"17:00","food to":"20:00","food label":"Food"},
   {days:"Sun",opens:"12:00",closes:"20:00"},
@@ -1093,7 +1093,7 @@ function live(rows,cd,fk,uk){
 }
 function price(p){
   p=(p||"").trim();if(!p)return "";
-  if(/^\d+(\.\d{1,2})?$/.test(p))return "£"+(+p).toFixed(2);
+  if(/^\d+(\.\d{1,2})?$/.test(p)){var n=+p;return "£"+(n%1===0?String(n):n.toFixed(2));}
   return p;
 }
 function tagsOf(r){return ((r.dietary||r.tags||"")).split(/[\s,\/]+/).filter(Boolean);}

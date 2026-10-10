@@ -1,7 +1,12 @@
 Section,Item,Description,Price,Dietary,Where,Highlight,Show from,Show until,Days,Status
-,Thursday: fish & chips night,"Fish, chips, mushy peas, bread and butter. Served 5 to 8pm.",9.95,,Board,Yes,,2026-12-30,,Live
-,Thursday: fish & chips night,"Fish, chips, mushy peas, bread and butter. Served 5 to 8pm.",9.95,,Board,Yes,2027-01-01,,,Live
-,The 5-5-5 menu: Friday 9 and Saturday 10 October,Fish & chips. Curry. Wagyu burger. 5 bean chilli & rice. Sausage & mash with onion gravy.,,,Board,Yes,2026-10-09,2026-10-10,,Live
+555 evening,,"Five mini meals, £5 each, from 5pm.",,,Board,,2026-10-10,,,Live
+555 evening,Wagyu burger,"Melted cheddar, lettuce, tomato and burger sauce, topped with beer-battered onion rings",5.00,,Board,,2026-10-10,,,Live
+555 evening,Beef & 5 bean chilli,Fluffy rice and toasted pitta bread,5.00,,Board,,2026-10-10,,,Live
+555 evening,Beer-battered fish & hand-cut chips,With a side of chip shop curry sauce,5.00,,Board,,2026-10-10,,,Live
+555 evening,Chicken Balti curry,Basmati rice and garlic naan,5.00,,Board,,2026-10-10,,,Live
+555 evening,Bangers & cheesy mash,With Guinness and onion gravy,5.00,,Board,,2026-10-10,,,Live
+555 evening,Extras: gourmet fries or hand-cut chips,A basket of either,5.00,,Board,,2026-10-10,,,Live
+555 evening,Children's meals,"Any of the above, or chicken nuggets and fries",5.00,,Board,,2026-10-10,,,Live
 Price,2 courses,,16.95,,Christmas,,2026-10-10,2026-12-23,,Live
 Price,3 courses,,21.95,,Christmas,,2026-10-10,2026-12-23,,Live
 Starters,King prawn & avocado cocktail,,,GF,Christmas,,2026-10-10,2026-12-23,,Live
@@ -29,6 +34,8 @@ Burgers,Black & blue,Stilton and Cajun spice,16.95,,Board,,,,,Live
 Little ones,Chicken nuggets & fries,,5.95,,Board,,,,,Live
 Little ones,Mini fish & chips,,5.95,,Board,,,,,Live
 Little ones,Cheeseburger & fries,,5.95,,Board,,,,,Live
+Homemade desserts,Ferrero Rocher cheesecake,,6.95,,Board,,2026-10-10,,,Live
+Homemade desserts,Apple & cherry crumble,With deluxe creamy custard,6.95,,Board,,2026-10-10,,,Live
 Sunday lunch,Slow-cooked brisket,,,,Sunday,,,,,Live
 Sunday lunch,Roast pork & crackling,,,,Sunday,,,,,Live
 Sunday lunch,Roast chicken & stuffing,,,,Sunday,,,,,Live
