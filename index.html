@@ -427,10 +427,16 @@ main{padding-top:var(--gap)}
 .events{max-width:none}
 .events li{display:block;padding:0;overflow:hidden}
 .ev-main{display:grid;grid-template-columns:5.4rem 1fr;gap:1.2rem;padding:1.2rem 1.4rem;align-items:start}
-.ev-art img{display:block;width:100%;aspect-ratio:3/1;object-fit:cover}
+.events li{position:relative;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+.events li>.ev-main,.events li>.ev-menu{position:relative;z-index:1}
+.ev-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.ev-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;opacity:.22;filter:saturate(.85) brightness(1.1);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 75%);mask-image:linear-gradient(90deg,transparent 0%,#000 75%)}
+.events li.has-art .ev-meta{color:#4a4a50}
+.events li.has-menu .ev-bg img{-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 42%);mask-image:linear-gradient(180deg,#000 0%,transparent 42%)}
+.events li .xmas-menu li{background:transparent;box-shadow:none}
 .ev-menu{padding:0 1.4rem 1.6rem}
 .ev-menu .xp{background:var(--timber)}
-@media (max-width:640px){.ev-art img{aspect-ratio:2/1}.ev-main{padding:1rem}.ev-menu{padding:0 1rem 1.2rem}}
+@media (max-width:640px){.ev-bg img{-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 90%);mask-image:linear-gradient(180deg,transparent 0%,#000 90%);opacity:.2}.events li.has-menu .ev-bg img{-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 30%);mask-image:linear-gradient(180deg,#000 0%,transparent 30%)}.ev-main{padding:1rem}.ev-menu{padding:0 1rem 1.2rem}}
 @media (max-width:480px){.ev-main{grid-template-columns:4.2rem 1fr;gap:.8rem}}
 /* menu board: light */
 .chalk{background:#fff;background-image:none;color:var(--ink);border:0;box-shadow:none;outline:0}
@@ -631,7 +637,6 @@ footer .nap a{color:var(--accent)}
     <div class="wrap">
       <p class="kicker">Coming up</p>
       <h2 id="events-h">What's on.</h2>
-      <p class="lead">Quiz nights, parties and BBQs, in date order. More dates go up here as soon as they're confirmed.</p>
       <ul class="events" id="events-list" aria-label="Upcoming events"></ul>
       <p class="events-empty" id="events-empty">Next dates coming soon. Follow us on <a href="https://www.facebook.com/RoyalOakBurtonLeonard">Facebook</a> or call <a href="tel:01765677198">01765 677198</a>.</p>
     </div>
@@ -1279,7 +1284,7 @@ function renderEvents(){
   clear(list);
   rows.forEach(function(x){
     var p=evParts(x.d),li=el("li"),dt=el("div","ev-date");
-    if(x.r.image){var art=el("div","ev-art"),im=el("img");im.src=x.r.image;im.alt="";im.loading="lazy";art.appendChild(im);li.appendChild(art);li.className="has-art";}
+    if(x.r.image){var art=el("div","ev-bg"),im=el("img");im.src=x.r.image;im.alt="";im.loading="lazy";art.appendChild(im);li.appendChild(art);li.className="has-art";}
     dt.appendChild(el("b",null,String(p.d)));dt.appendChild(el("span",null,MONTHS[p.m-1].slice(0,3)));
     var body=el("div","ev-body"),h=el("h3",null,x.r.event);
     if(/^(yes|y|true)$/i.test((x.r["family friendly"]||"").trim()))h.appendChild(el("span","ev-tag","Family friendly"));
@@ -1299,7 +1304,7 @@ function renderEvents(){
         groupBySection(mrows.filter(function(r){return !/^price/i.test(r.section||"");})).forEach(function(g){mn.appendChild(sectionNode(g));});
         if(pr.firstChild)mb.appendChild(pr);mb.appendChild(mn);
         mb.appendChild(el("p","note","V vegetarian \u00b7 GF gluten free \u00b7 GFA gluten free available. Please tell us about any allergies when you book."));
-        li.appendChild(mb);
+        li.appendChild(mb);li.className+=" has-menu";
       }
     }
     list.appendChild(li);
