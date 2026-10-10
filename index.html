@@ -78,12 +78,16 @@ main{padding:0 var(--gap)}
 .nav{position:sticky;top:0;z-index:60;background:var(--timber);color:var(--plaster)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:.85rem}
 .brand{font-family:var(--display);font-style:italic;font-weight:700;font-size:1.55rem;color:var(--gold);text-decoration:none;line-height:1;letter-spacing:-.01em}
+.brand-logo{display:none;height:34px;width:auto;border-radius:4px}
+.brand-txt{display:inline}
+@media (min-width:1100px){.brand-logo{display:block}.brand-txt{display:none}.brand small{margin-top:.3rem}}
 .brand small{display:block;font-family:var(--body);font-style:normal;font-weight:500;font-size:.78rem;color:#B9B3A6;letter-spacing:.02em;margin-top:.25rem}
 .nav ul{display:flex;gap:1.7rem;list-style:none;margin:0;padding:0}
 .nav ul a{text-decoration:none;font-weight:500;font-size:.98rem}
 .nav ul a:hover{text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--gold)}
 .call{background:var(--geranium);color:#fff;text-decoration:none;font-weight:600;padding:.62rem 1.15rem;border-radius:999px;white-space:nowrap}
 .call:hover{background:#d93248}
+.nav nav a{white-space:nowrap}
 .nav nav{order:2}.call{order:3}.nav-toggle{order:4}
 .nav-toggle{display:none;background:transparent;color:var(--plaster);border:2px solid var(--plaster);border-radius:10px;width:46px;height:42px;padding:0;cursor:pointer;align-items:center;justify-content:center;flex:none}
 .nav-toggle:hover{border-color:var(--gold)}
@@ -303,6 +307,7 @@ address{font-style:normal;font-size:1.25rem;line-height:1.5;margin:0 0 1.2rem}
 
 footer{background:var(--timber);color:#B9B3A6;padding:2rem 0 2.4rem;font-size:.92rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem}
+footer .mk-logo{height:44px;width:auto;max-width:100%;border-radius:4px}
 footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:var(--gold);font-size:1.2rem}
 
 @media (prefers-reduced-motion:reduce){
@@ -317,7 +322,7 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
 <script>document.documentElement.className+=" js";</script>
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="The Royal Oak, Burton Leonard - top of page">The Royal Oak<small>Burton Leonard, near Harrogate</small></a>
+    <a class="brand" href="#top" aria-label="The Royal Oak, Burton Leonard - top of page"><img class="brand-logo" src="img/logo-sign.jpg" alt="The Royal Oak" width="545" height="70"><span class="brand-txt">The Royal Oak</span><small>Burton Leonard, near Harrogate</small></a>
     <a class="call" href="tel:01765677198"><span class="long">Call </span>01765 677198</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Menu"><span class="bars"></span></button>
     <nav aria-label="Main">
@@ -571,7 +576,7 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
 
 <footer>
   <div class="wrap">
-    <span class="mk">The Royal Oak</span>
+    <img class="mk-logo" src="img/logo-sign.jpg" alt="The Royal Oak" width="545" height="70" loading="lazy">
     <span>&copy; 2026 The Royal Oak, Burton Leonard. Free house.</span>
     <span>Website redesign concept. Details to be confirmed with the pub before going live.</span>
   </div>
