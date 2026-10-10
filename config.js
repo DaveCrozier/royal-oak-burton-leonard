@@ -14,3 +14,8 @@ window.ROYAL_OAK_SOURCES = {
   feature: "",  // Feature tab
   routes: ""    // Routes tab
 };
+
+/* Optional: Google Analytics 4 and Google Ads. Leave blank to switch everything off.
+   ga4: "G-XXXXXXXXXX"   adsId: "AW-1234567890"   adsCallLabel: the conversion label for phone-call clicks.
+   When set, a simple cookie question appears; nothing is tracked unless the visitor says yes. */
+window.ROYAL_OAK_ANALYTICS = { ga4: "", adsId: "", adsCallLabel: "" };

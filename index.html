@@ -3,11 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Royal Oak, Burton Leonard | Free house near Harrogate &amp; Ripon</title>
-<meta name="description" content="Black-and-white timbered free house in Burton Leonard, between Harrogate and Ripon. Cask ale, home-cooked pies and curries, Sunday lunch once a month and two beer gardens. Open Wednesday to Sunday.">
-<meta property="og:title" content="The Royal Oak, Burton Leonard">
-<meta property="og:description" content="Logs on the fire, pints on the bar. A free house between Harrogate and Ripon.">
+<title>The Royal Oak, Burton Leonard | Country Pub near Harrogate</title>
+<meta name="description" content="Traditional free house in Burton Leonard, between Harrogate and Ripon. 100% home-cooked pub food, cask ale, Sunday lunch, log fire and two beer gardens. Call 01765 677198.">
+<link rel="canonical" href="https://davecrozier.github.io/royal-oak-burton-leonard/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="The Royal Oak, Burton Leonard">
+<meta property="og:title" content="The Royal Oak, Burton Leonard | Country Pub near Harrogate">
+<meta property="og:description" content="Home-cooked pub food, cask ale, a log fire and two beer gardens. A free house between Harrogate and Ripon.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://davecrozier.github.io/royal-oak-burton-leonard/">
+<meta property="og:image" content="https://davecrozier.github.io/royal-oak-burton-leonard/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Royal Oak, Burton Leonard: the black-and-white timbered pub and its oak-and-crown badge">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Royal Oak, Burton Leonard | Country Pub near Harrogate">
+<meta name="twitter:description" content="Home-cooked pub food, cask ale, a log fire and two beer gardens.">
+<meta name="twitter:image" content="https://davecrozier.github.io/royal-oak-burton-leonard/img/og.jpg">
 <meta name="theme-color" content="#1E3A29">
 <link rel="icon" type="image/svg+xml" href="img/logo-emblem.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,11 +29,20 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BarOrPub",
-  "name": "The Royal Oak, Burton Leonard",
+  "@type": ["BarOrPub","Restaurant"],
+  "@id": "https://davecrozier.github.io/royal-oak-burton-leonard/#pub",
+  "name": "The Royal Oak",
+  "alternateName": "The Royal Oak, Burton Leonard",
+  "url": "https://davecrozier.github.io/royal-oak-burton-leonard/",
+  "description": "Traditional country pub and free house in Burton Leonard, between Harrogate and Ripon, serving 100% home-cooked pub food, cask ale, Sunday lunch and a log fire, with two beer gardens.",
+  "image": ["https://davecrozier.github.io/royal-oak-burton-leonard/img/og.jpg", "https://davecrozier.github.io/royal-oak-burton-leonard/img/front.jpg"],
+  "logo": "https://davecrozier.github.io/royal-oak-burton-leonard/img/logo-emblem.svg",
   "telephone": "+441765677198",
-  "servesCuisine": "British",
+  "servesCuisine": ["British", "Pub food", "Home cooked", "Sunday roast"],
   "priceRange": "££",
+  "acceptsReservations": "True",
+  "hasMenu": "https://davecrozier.github.io/royal-oak-burton-leonard/#food",
+  "hasMap": "https://www.google.com/maps/dir/?api=1&destination=Royal+Oak+Copgrove+Road+Burton+Leonard+HG3+3SJ",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Copgrove Road, Burton Leonard",
@@ -29,6 +51,13 @@
     "postalCode": "HG3 3SJ",
     "addressCountry": "GB"
   },
+  "areaServed": ["Burton Leonard", "Harrogate", "Ripon", "Knaresborough", "Boroughbridge"],
+  "amenityFeature": [
+    {"@type":"LocationFeatureSpecification","name":"Beer garden","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Real ale","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Open fire","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Dogs welcome in the beer gardens","value":true}
+  ],
   "sameAs": ["https://www.facebook.com/RoyalOakBurtonLeonard"],
   "openingHoursSpecification": [
     {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"17:00","closes":"22:00"},
@@ -39,6 +68,7 @@
   ]
 }
 </script>
+<script type="application/ld+json" id="ld-events">[]</script>
 <style>
 :root{
   --timber:#1E3A29;
@@ -308,6 +338,30 @@ address{font-style:normal;font-size:1.25rem;line-height:1.5;margin:0 0 1.2rem}
 
 footer{background:var(--timber);color:#CFC8AC;padding:2rem 0 2.4rem;font-size:.92rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero-badge{position:absolute;z-index:4;top:1.4rem;right:clamp(1rem,3vw,2.4rem);width:clamp(96px,13vw,190px);height:auto;filter:drop-shadow(0 8px 20px rgba(0,0,0,.5))}
+.stickybar{display:none}
+@media (max-width:700px){
+  .hero{display:block;min-height:0}
+  .hero-media{position:relative;inset:auto;height:max(240px,64vw);overflow:hidden}
+  .hero-img{object-position:36% 55%}
+  .hero::after{display:none}
+  .hero .wrap{padding-block:1.4rem 1.8rem}
+  .hero-badge{width:84px;top:.8rem;right:.8rem}
+  .stickybar{display:grid;grid-template-columns:1.4fr 1fr;gap:.6rem;position:fixed;left:0;right:0;bottom:0;z-index:80;padding:.6rem .8rem calc(.6rem + env(safe-area-inset-bottom));background:var(--timber);border-top:2px solid var(--gold);box-shadow:0 -6px 20px rgba(0,0,0,.35)}
+  .stickybar a{display:block;text-align:center;text-decoration:none;font-weight:600;padding:.75rem .5rem;border-radius:999px;border:2px solid var(--gold);color:#fff}
+  .stickybar a.sb-call{background:var(--geranium);border-color:var(--geranium)}
+  body{padding-bottom:4.6rem}
+  .preview{bottom:4.4rem}
+}
+.consent{position:fixed;left:.8rem;right:.8rem;bottom:.8rem;z-index:120;max-width:560px;background:var(--plaster);color:var(--ink);border:2px solid var(--timber);padding:1rem 1.1rem;box-shadow:0 12px 40px rgba(0,0,0,.4);font-size:.95rem}
+.consent p{margin:0 0 .7rem}
+.consent button{font:inherit;font-weight:600;padding:.5rem 1.1rem;border-radius:999px;border:2px solid var(--timber);background:var(--timber);color:#fff;cursor:pointer;margin-right:.5rem}
+.consent button.no{background:transparent;color:var(--ink)}
+@media (max-width:700px){.consent{bottom:5rem}}
+footer .nap{font-style:normal;line-height:1.5}
+footer .nap a{color:var(--gold)}
 footer .mk-logo{height:96px;width:auto}
 footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:var(--gold);font-size:1.2rem}
 
@@ -352,9 +406,10 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
 
   <!-- HERO -->
   <section class="panel hero" id="hero" aria-label="The Royal Oak">
+    <img class="hero-badge" src="img/logo-emblem.svg" alt="" aria-hidden="true" width="400" height="400">
     <div class="hero-media"><img class="hero-img" src="img/front.jpg" alt="The black-and-white timbered front of The Royal Oak, with hanging baskets, flower tubs and benches on the lawn" fetchpriority="high" width="1920" height="750"></div>
     <div class="wrap">
-      <h1>Logs on the fire. <em>Pints on the bar.</em></h1>
+      <h1><span class="sr">The Royal Oak, Burton Leonard: a traditional country pub near Harrogate. </span>Logs on the fire. <em>Pints on the bar.</em></h1>
       <aside class="fascia" aria-live="polite" aria-label="Opening status">
         <p class="head"><span class="lamp" aria-hidden="true"></span><span id="status-head">Open Wednesday to Sunday.</span></p>
         <p class="sub" id="status-sub">A free house in the village, with cask ale and home-cooked food.</p>
@@ -579,11 +634,49 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
   <div class="wrap">
     <img class="mk-logo" src="img/logo-emblem.svg" alt="The Royal Oak" width="400" height="400" loading="lazy">
     <span>&copy; 2026 The Royal Oak, Burton Leonard. Free house.</span>
-    <span>Website redesign concept. Details to be confirmed with the pub before going live.</span>
+    <address class="nap">Copgrove Road, Burton Leonard, Harrogate HG3 3SJ<br><a href="tel:01765677198">01765 677198</a> &middot; <a href="https://www.facebook.com/RoyalOakBurtonLeonard">Facebook</a></address>
   </div>
 </footer>
 
+<nav class="stickybar" aria-label="Quick actions"><a class="sb-call" href="tel:01765677198">Call to book</a><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Royal+Oak+Copgrove+Road+Burton+Leonard+HG3+3SJ">Directions</a></nav>
+
 <script src="config.js"></script>
+<script>
+/* Optional analytics and Google Ads. Loads only when IDs are set in config.js, and only after the visitor accepts. */
+(function(){
+  var A=window.ROYAL_OAK_ANALYTICS||{},id=A.ga4||A.adsId;
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  function track(name,params){try{if(id)gtag("event",name,params||{});else dataLayer.push({event:name});}catch(e){}}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;
+    var h=a.getAttribute("href")||"";
+    if(h.indexOf("tel:")===0){track("call_click",{link_text:(a.textContent||"").trim().slice(0,40)});
+      if(A.adsId&&A.adsCallLabel)try{gtag("event","conversion",{send_to:A.adsId+"/"+A.adsCallLabel});}catch(x){}}
+    else if(h.indexOf("google.com/maps")>-1)track("directions_click");
+    else if(h.indexOf("facebook.com")>-1)track("facebook_click");
+    else if(h.indexOf("komoot.com")>-1)track("route_click");
+  });
+  if(!id)return;
+  var KEY="ro_consent";
+  function load(){
+    var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id="+id;document.head.appendChild(s);
+    gtag("js",new Date());
+    if(A.ga4)gtag("config",A.ga4,{anonymize_ip:true});
+    if(A.adsId)gtag("config",A.adsId);
+  }
+  gtag("consent","default",{analytics_storage:"denied",ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied"});
+  var v=null;try{v=localStorage.getItem(KEY);}catch(e){}
+  function grant(){gtag("consent","update",{analytics_storage:"granted",ad_storage:"granted",ad_user_data:"granted",ad_personalization:"granted"});}
+  load();
+  if(v==="yes"){grant();return;}
+  if(v==="no")return;
+  var b=document.createElement("div");b.className="consent";b.setAttribute("role","dialog");b.setAttribute("aria-label","Cookies");
+  b.innerHTML='<p>We use cookies to see how many people find us online and which pages help. Is that OK?</p><button class="yes" type="button">Yes, that is fine</button><button class="no" type="button">No thanks</button>';
+  b.addEventListener("click",function(e){var c=e.target.className;if(c!=="yes"&&c!=="no")return;try{localStorage.setItem(KEY,c);}catch(x){}if(c==="yes")grant();b.remove();});
+  document.body.appendChild(b);
+})();
+</script>
 <script>
 (function(){
 "use strict";
@@ -1104,6 +1197,21 @@ function renderEvents(){
     li.appendChild(dt);li.appendChild(body);list.appendChild(li);
   });
   empty.hidden=rows.length>0;
+  try{
+    var ld=document.getElementById("ld-events");
+    if(ld){
+      var pad=function(v){return (v<10?"0":"")+v;},iso=function(n){var q=evParts(n);return q.y+"-"+pad(q.m)+"-"+pad(q.d);};
+      ld.textContent=JSON.stringify(rows.map(function(x){
+        var o={"@context":"https://schema.org","@type":"Event","name":x.r.event,"startDate":iso(x.d),
+          "eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+          "location":{"@type":"Place","name":"The Royal Oak","address":{"@type":"PostalAddress","streetAddress":"Copgrove Road, Burton Leonard","addressLocality":"Harrogate","addressRegion":"North Yorkshire","postalCode":"HG3 3SJ","addressCountry":"GB"}},
+          "organizer":{"@type":"Organization","name":"The Royal Oak, Burton Leonard","url":location.origin+location.pathname}};
+        if(x.e!==null&&x.e!==x.d)o.endDate=iso(x.e);
+        if(x.r.description)o.description=x.r.description;
+        return o;
+      }));
+    }
+  }catch(err){}
 }
 
 function renderAll(){

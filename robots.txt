@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://davecrozier.github.io/royal-oak-burton-leonard/sitemap.xml

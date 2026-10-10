@@ -3,7 +3,7 @@
 A single-page static site that reads its content (opening hours, food menu, drinks, offers, events) from a spreadsheet. No build step. Works on GitHub Pages.
 
 - `index.html`: the whole site
-- `config.js`: where the seven spreadsheet links go
+- `config.js`: where the seven spreadsheet links go, plus optional analytics IDs
 - `data/*.csv`: backup copies of the sheet, used if the live sheet can't be reached
 - `Royal-Oak-content.xlsx`: the spreadsheet template (tabs: Read me, Hours, Menu, Drinks, Offers, Events, Feature, Routes)
 - `img/`: the pub's photos
@@ -49,3 +49,17 @@ The big highlighted panel above the menu (currently the New Year's Eve BBQ, with
 
 ## Walks & rides (Routes tab)
 Columns: Type (Walk or Ride), Name, Miles, Climb (ft), Time, Difficulty, Description, Komoot tour ID, More info link, Show from, Show until, Status. Paste the number from the end of a public Komoot route link (komoot.com/tour/743511818) into Komoot tour ID and the card gets a "Show route map" button; the map and elevation profile only load from Komoot when someone clicks it. The two rides are Dave's recorded rides (Nidderdale Classic and Ferrensby, Knaresborough and Ripley). The three walks are from public sources and have no map, because there is no Komoot route for them yet.
+
+## SEO and SEM
+**Built in:** page title and description, canonical link, Open Graph and Twitter share card (`img/og.jpg`), structured data for Google (pub, address, phone, hours, menu link, plus an Event entry for every live item in the Events tab), `robots.txt`, `sitemap.xml`, a hidden but readable keyword-rich H1, descriptive image alt text, phone and address in the footer, mobile call/directions bar, and click tracking for calls, directions, Facebook and routes.
+
+**When the real address is known:** the canonical, Open Graph and structured-data links point at the GitHub Pages address (`https://davecrozier.github.io/royal-oak-burton-leonard/`). If the pub gets its own domain, search and replace that address in `index.html`, `robots.txt` and `sitemap.xml`.
+
+**Do these outside the website (this is where most local ranking comes from):**
+1. Claim and complete the **Google Business Profile** (Royal Oak, Burton Leonard): category "Pub", add Restaurant and Bar, hours (with special hours), phone 01765 677198, website link, menu link, 10+ real photos, weekly Posts (events, 5-5-5, Sunday lunch). Ask regulars for reviews and reply to every one.
+2. Do the same on **Bing Places** and **Apple Business Connect**.
+3. Make the name, address and phone **identical everywhere**: Tripadvisor still shows the old number 01765 677332.
+4. Add the live site to **Google Search Console** and submit `sitemap.xml`.
+5. Get local links: Burton Leonard village website, Harrogate and Nidderdale tourism pages, CAMRA WhatPub, Good Pub Guide, Visit Harrogate, local walking and cycling groups.
+
+**Google Ads (SEM), if the pub wants it:** start small (about £5 to £10 a day) with call-only or "call + location" ads limited to a 10 to 15 mile radius, running Thu to Sun evenings and Sunday lunch week. Good keywords: pub near me, Sunday lunch Harrogate, Sunday roast Ripon, pub food Burton Leonard, dog friendly beer garden Harrogate, pub NYE. Negative keywords: jobs, recipe, for sale, rent, hotel. Tracking: put the GA4 ID, Ads ID and call-conversion label in `config.js` (`ROYAL_OAK_ANALYTICS`). Nothing loads, and no cookies are set, until they are filled in; then a short "cookies OK?" question appears and nothing is tracked until the visitor says yes.
