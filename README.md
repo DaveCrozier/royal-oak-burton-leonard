@@ -3,9 +3,9 @@
 A single-page static site that reads its content (opening hours, food menu, drinks, offers, events) from a spreadsheet. No build step. Works on GitHub Pages.
 
 - `index.html`: the whole site
-- `config.js`: where the four spreadsheet links go
+- `config.js`: where the seven spreadsheet links go
 - `data/*.csv`: backup copies of the sheet, used if the live sheet can't be reached
-- `Royal-Oak-content.xlsx`: the spreadsheet template (tabs: Read me, Hours, Menu, Drinks, Offers, Events)
+- `Royal-Oak-content.xlsx`: the spreadsheet template (tabs: Read me, Hours, Menu, Drinks, Offers, Events, Feature, Routes)
 - `img/`: the pub's photos
 
 ## How the spreadsheet drives the site
@@ -21,8 +21,8 @@ Dates: dd/mm/yyyy, yyyy-mm-dd or `9 Oct 2026`. Times: 17:00, 5pm, 5:30pm. A date
 ## Connect it to Google Sheets (one-off, about 10 minutes)
 1. Upload `Royal-Oak-content.xlsx` to Google Drive and open it as a Google Sheet.
 2. **File > Settings > Locale: United Kingdom** (so 10/11/2026 means 10 November).
-3. For each of the five tabs: **File > Share > Publish to web**, choose that tab, choose **Comma-separated values (.csv)**, Publish, copy the link.
-4. Paste the five links into `config.js` (hours, menu, drinks, offers, events), commit and push.
+3. For each of the seven tabs: **File > Share > Publish to web**, choose that tab, choose **Comma-separated values (.csv)**, Publish, copy the link.
+4. Paste the seven links into `config.js` (hours, menu, drinks, offers, events, feature, routes), commit and push.
 
 After that, edit the sheet and the site updates within about 5 minutes. No further code changes.
 

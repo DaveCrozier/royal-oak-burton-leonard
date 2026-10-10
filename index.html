@@ -8,7 +8,7 @@
 <meta property="og:title" content="The Royal Oak, Burton Leonard">
 <meta property="og:description" content="Logs on the fire, pints on the bar. A free house between Harrogate and Ripon.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#15110E">
+<meta name="theme-color" content="#1E3A29">
 <link rel="icon" type="image/svg+xml" href="img/logo-emblem.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,15 +41,15 @@
 </script>
 <style>
 :root{
-  --timber:#15110E;
-  --plaster:#ECEAE4;
-  --geranium:#C6283A;
-  --gold:#D9A441;
-  --board:#1E2B25;
-  --chalk:#EFEDE3;
+  --timber:#1E3A29;
+  --plaster:#F3EBD8;
+  --geranium:#A8322A;
+  --gold:#D8B35F;
+  --board:#1A2C22;
+  --chalk:#F2EBD6;
   --wood:#6A4A2E;
-  --ink:#1C1A17;
-  --muted:#4F4B44;
+  --ink:#2A2118;
+  --muted:#5A4E40;
   --gap:clamp(8px,1.8vw,26px);
   --brace:clamp(26px,4.6vw,62px);
   --display:"Fraunces", Georgia, "Times New Roman", serif;
@@ -82,12 +82,12 @@ main{padding:0 var(--gap)}
 .brand-logo{display:block;height:64px;width:auto;flex:none}
 .brand small{margin:0;max-width:7.5rem;line-height:1.25}
 @media (max-width:1100px){.brand small{display:none}}
-.brand small{display:block;font-family:var(--body);font-style:normal;font-weight:500;font-size:.78rem;color:#B9B3A6;letter-spacing:.02em;margin-top:.25rem}
+.brand small{display:block;font-family:var(--body);font-style:normal;font-weight:500;font-size:.78rem;color:#CFC8AC;letter-spacing:.02em;margin-top:.25rem}
 .nav ul{display:flex;gap:1.7rem;list-style:none;margin:0;padding:0}
 .nav ul a{text-decoration:none;font-weight:500;font-size:.98rem}
 .nav ul a:hover{text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--gold)}
 .call{background:var(--geranium);color:#fff;text-decoration:none;font-weight:600;padding:.62rem 1.15rem;border-radius:999px;white-space:nowrap}
-.call:hover{background:#d93248}
+.call:hover{background:#C0453A}
 .nav nav a{white-space:nowrap}
 .nav nav{order:2}.call{order:3}.nav-toggle{order:4}
 .nav-toggle{display:none;background:transparent;color:var(--plaster);border:2px solid var(--plaster);border-radius:10px;width:46px;height:42px;padding:0;cursor:pointer;align-items:center;justify-content:center;flex:none}
@@ -104,10 +104,10 @@ main{padding:0 var(--gap)}
   .nav .wrap{gap:.7rem}
   .nav .brand{margin-right:auto}
   .js .nav-toggle{display:inline-flex}
-  .js .nav ul{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:var(--timber);border-top:1px solid #3a322b;border-bottom:4px solid var(--gold);box-shadow:0 18px 30px rgba(0,0,0,.35);padding:.4rem 0 .6rem}
+  .js .nav ul{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:var(--timber);border-top:1px solid #2F5240;border-bottom:4px solid var(--gold);box-shadow:0 18px 30px rgba(0,0,0,.35);padding:.4rem 0 .6rem}
   .js .nav ul.open{display:flex}
   .js .nav ul a{display:block;padding:.95rem clamp(1rem,4vw,2rem);font-size:1.1rem}
-  .js .nav ul a:hover{background:#221c17;text-decoration:none}
+  .js .nav ul a:hover{background:#1A2C22;text-decoration:none}
   html:not(.js) .nav ul{display:none}
 }
 @media (max-width:520px){.call .long{display:none}.call{padding:.62rem .95rem}}
@@ -120,7 +120,7 @@ main{padding:0 var(--gap)}
 .hero-img{width:100%;height:100%;object-fit:cover;object-position:38% 50%;animation:settle 2.2s cubic-bezier(.2,.7,.2,1) both}
 @supports (animation-timeline:scroll()){.hero-media{animation:drift linear both;animation-timeline:scroll(root);animation-range:0 90vh}}
 @keyframes drift{from{transform:translateY(0)}to{transform:translateY(7%)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(21,17,14,.92) 0%,rgba(21,17,14,.72) 30%,rgba(21,17,14,.1) 62%,rgba(21,17,14,0) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(23,43,31,.92) 0%,rgba(23,43,31,.72) 30%,rgba(23,43,31,.1) 62%,rgba(23,43,31,0) 100%)}
 .hero .wrap{position:relative;z-index:3;display:grid;gap:2rem;padding-block:clamp(2rem,5vw,4rem)}
 @media (min-width:980px){.hero .wrap{grid-template-columns:1fr auto;align-items:end}}
 .hero h1{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(3.1rem,9.2vw,8.4rem);line-height:.92;letter-spacing:-.035em;max-width:11ch;text-wrap:balance;text-shadow:0 2px 24px rgba(0,0,0,.35)}
@@ -134,7 +134,7 @@ main{padding:0 var(--gap)}
 .fascia .ctas{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem}
 .btn{display:inline-block;text-decoration:none;font-weight:600;padding:.75rem 1.25rem;border-radius:999px;border:2px solid currentColor}
 .btn.red{background:var(--geranium);border-color:var(--geranium);color:#fff}
-.btn.red:hover{background:#d93248;border-color:#d93248}
+.btn.red:hover{background:#C0453A;border-color:#C0453A}
 .btn.light{color:#fff}
 .btn.light:hover{background:#fff;color:var(--timber)}
 .btn.dark{color:var(--timber)}
@@ -220,7 +220,7 @@ h3{font-family:var(--display);font-weight:800;font-size:1.45rem;letter-spacing:-
 .drinks-list a{font-weight:600;text-underline-offset:4px}
 .mosaic-box{max-width:560px}
 .drinks-list ul{list-style:none;margin:0;padding:0}
-.drinks-list li{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;border-bottom:1px solid rgba(21,17,14,.2)}
+.drinks-list li{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;border-bottom:1px solid rgba(23,43,31,.2)}
 .drinks-list li small{display:block;font-size:.92rem;color:var(--muted);line-height:1.35}
 .drinks-list li .p{font-family:var(--display);font-weight:800;white-space:nowrap}
 @media (min-width:861px){#drink .mosaic-box{position:sticky;top:6rem;align-self:start}}
@@ -245,7 +245,7 @@ li.so .nm,li.so small{text-decoration:line-through;text-decoration-thickness:1px
 
 /* ---------- visit ---------- */
 .hours{list-style:none;margin:0;padding:0;border-top:3px solid var(--timber)}
-.hours li{display:grid;grid-template-columns:7.2rem 1fr;gap:1rem;padding:.85rem .7rem;border-bottom:1px solid rgba(21,17,14,.25)}
+.hours li{display:grid;grid-template-columns:7.2rem 1fr;gap:1rem;padding:.85rem .7rem;border-bottom:1px solid rgba(23,43,31,.25)}
 .hours .d{font-family:var(--display);font-weight:800}
 .hours .n{display:block;font-size:.95rem;color:var(--muted)}
 .hours li.today{background:var(--timber);color:#fff}
@@ -256,7 +256,7 @@ li.so .nm,li.so small{text-decoration:line-through;text-decoration-thickness:1px
 .upcoming-box h3{margin-bottom:.4rem}
 .upcoming-box[hidden]{display:none}
 .upcoming{list-style:none;margin:0;padding:0;border-top:3px solid var(--timber)}
-.upcoming li{padding:.65rem .7rem;border-bottom:1px solid rgba(21,17,14,.25);box-shadow:inset 6px 0 0 var(--geranium)}
+.upcoming li{padding:.65rem .7rem;border-bottom:1px solid rgba(23,43,31,.25);box-shadow:inset 6px 0 0 var(--geranium)}
 .upcoming b{font-family:var(--display);font-weight:800}
 .preview{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--gold);color:var(--timber);padding:.65rem 1rem;font-weight:600;text-align:center;font-size:.95rem}
 /* ---------- feature panel ---------- */
@@ -306,7 +306,7 @@ address{font-style:normal;font-size:1.25rem;line-height:1.5;margin:0 0 1.2rem}
 .tel:hover{text-decoration:underline;text-underline-offset:7px;text-decoration-color:var(--geranium)}
 .links{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:2rem}
 
-footer{background:var(--timber);color:#B9B3A6;padding:2rem 0 2.4rem;font-size:.92rem}
+footer{background:var(--timber);color:#CFC8AC;padding:2rem 0 2.4rem;font-size:.92rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem}
 footer .mk-logo{height:96px;width:auto}
 footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:var(--gold);font-size:1.2rem}
