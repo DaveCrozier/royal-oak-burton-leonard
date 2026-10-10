@@ -21,7 +21,7 @@
 <meta name="twitter:title" content="The Royal Oak, Burton Leonard | Country Pub near Harrogate">
 <meta name="twitter:description" content="Home-cooked pub food, cask ale, a log fire and two beer gardens.">
 <meta name="twitter:image" content="https://davecrozier.github.io/royal-oak-burton-leonard/img/og.jpg">
-<meta name="theme-color" content="#1E3A29">
+<meta name="theme-color" content="#F5F5F7">
 <link rel="icon" type="image/svg+xml" href="img/logo-emblem.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -385,6 +385,70 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
   html{scroll-behavior:auto}
   .hero-img,.hero-media,.signpost.in .sign{animation:none}
 }
+
+/* ================= Light theme (Apple-style): airy tiles on soft grey ================= */
+:root{--page:#F5F5F7;--plaster:#fff;--ink:#1D1D1F;--muted:#6E6E73;--accent:#2E6B43;--geranium:#2E6B43;--cta-hover:#245839;--chalk:#1D1D1F}
+body{background:var(--page);color:var(--ink)}
+:focus-visible{outline-color:var(--accent)}
+.panel{border-radius:28px;overflow:clip}
+.panel.braced::before,.panel.braced::after{display:none}
+main{padding-top:var(--gap)}
+/* nav */
+.nav{background:rgba(255,255,255,.82);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);color:var(--ink);border-bottom:1px solid rgba(0,0,0,.08)}
+.brand small{color:var(--muted)}
+.nav ul a:hover{text-decoration-color:var(--accent)}
+.nav-toggle{color:var(--ink);border-color:rgba(0,0,0,.35)}
+.nav-toggle:hover{border-color:var(--accent)}
+.call:hover,.btn.red:hover{background:var(--cta-hover);border-color:var(--cta-hover)}
+@media (max-width:860px){
+  .js .nav ul{background:rgba(255,255,255,.97);border-top:1px solid rgba(0,0,0,.08);border-bottom:1px solid rgba(0,0,0,.08);box-shadow:0 18px 30px rgba(0,0,0,.12)}
+  .js .nav ul a:hover{background:var(--page)}
+}
+/* offer strip */
+.offer{background:#E6F0E8;color:var(--ink);border-radius:18px;margin-bottom:var(--gap)}
+.offer a{color:var(--accent)}
+/* hero: headline first, photo as a rounded tile below */
+.hero{display:flex;flex-direction:column;min-height:0;background:#fff;color:var(--ink);align-items:stretch}
+.hero::after{display:none}
+.hero .wrap{order:1;padding-block:clamp(2.4rem,6vw,4.6rem) clamp(1.6rem,3vw,2.4rem)}
+.hero h1{color:var(--ink);text-shadow:none;font-weight:700;letter-spacing:-.04em;font-size:clamp(2.9rem,8vw,6.8rem);max-width:12ch}
+.hero h1 em{color:var(--accent);font-weight:500}
+.fascia{background:var(--page);border:0;outline:0;box-shadow:none;color:var(--ink);border-radius:22px}
+.fascia .head{color:var(--ink)}
+.fascia .sub{color:var(--muted)}
+.btn.light{color:var(--ink);border-color:rgba(0,0,0,.28)}
+.btn.light:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hero-media{order:2;position:relative;inset:auto;height:clamp(260px,42vw,540px);margin:0 clamp(.6rem,2vw,1.4rem) clamp(.6rem,2vw,1.4rem);border-radius:22px;overflow:hidden;animation:none}
+.hero-badge{top:1rem;right:1rem;width:clamp(84px,12vw,170px)}
+@media (max-width:700px){.hero{display:flex}.hero-media{height:max(220px,60vw);margin:0 .6rem .6rem;border-radius:18px;overflow:hidden}.hero .wrap{padding-block:1.8rem 1.4rem}.hero-badge{width:76px;top:.6rem;right:.6rem}}
+/* menu board: light */
+.chalk{background:#fff;background-image:none;color:var(--ink);border:0;box-shadow:none;outline:0}
+.chalk h2{font-family:var(--display);font-weight:700;letter-spacing:-.03em;color:var(--ink);font-size:clamp(2.4rem,6vw,4.6rem)}
+.chalk .lead,.chalk .note,.chalk li small,.special small{color:var(--muted)}
+.special{border:1px solid rgba(0,0,0,.14);background:var(--page);border-radius:20px;font-family:var(--display);font-weight:700;font-size:clamp(1.25rem,2.4vw,1.7rem)}
+.chalk h3{font-family:var(--display);font-weight:700;font-size:1.6rem;color:var(--ink);border-bottom:2px solid var(--ink)}
+.chalk li{border-bottom:1px solid rgba(0,0,0,.12)}
+.chalk li .p{font-family:var(--display);font-weight:700;font-size:1.15rem}
+.chalk a{color:var(--accent)}
+/* cards */
+.events li,.walk{background:var(--page);border:0;border-radius:20px}
+.walks-scene{border:0;border-radius:20px}
+.route-map{border:0;border-radius:16px;overflow:hidden;background:var(--page)}
+.garden .card{background:#fff;border:0;outline:0;border-radius:22px;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.xp{border-radius:18px;outline:0;border:0}
+.hours li.today{border-radius:12px}
+/* seasonal feature panel */
+.feature{background:#EAF2EC;color:var(--ink)}
+.feature h2{color:var(--ink)}
+.feature .kicker{color:var(--accent)}
+.feature .lead{color:var(--muted)}
+.feature-list{border:1px dashed rgba(46,107,67,.55);border-radius:18px}
+.xmas .kicker{color:var(--accent)}
+/* footer + mobile bar */
+footer{background:transparent;color:var(--muted)}
+footer .nap a{color:var(--accent)}
+.stickybar{background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-top:1px solid rgba(0,0,0,.1);box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+@media (max-width:700px){.stickybar a{border:1px solid rgba(0,0,0,.2);color:var(--ink)}.stickybar a.sb-call{background:var(--accent);border-color:var(--accent);color:#fff}}
 </style>
 </head>
 <body>
@@ -423,8 +487,7 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
 
   <!-- HERO -->
   <section class="panel hero" id="hero" aria-label="The Royal Oak">
-    <img class="hero-badge" src="img/logo-emblem.svg" alt="" aria-hidden="true" width="400" height="400">
-    <div class="hero-media"><img class="hero-img" src="img/front.jpg" alt="The black-and-white timbered front of The Royal Oak, with hanging baskets, flower tubs and benches on the lawn" fetchpriority="high" width="1920" height="750"></div>
+    <div class="hero-media"><img class="hero-badge" src="img/logo-emblem.svg" alt="" aria-hidden="true" width="400" height="400"><img class="hero-img" src="img/front.jpg" alt="The black-and-white timbered front of The Royal Oak, with hanging baskets, flower tubs and benches on the lawn" fetchpriority="high" width="1920" height="750"></div>
     <div class="wrap">
       <h1><span class="sr">The Royal Oak, Burton Leonard: a traditional country pub near Harrogate. </span>Logs on the fire. <em>Pints on the bar.</em></h1>
       <aside class="fascia" aria-live="polite" aria-label="Opening status">
