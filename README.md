@@ -33,7 +33,7 @@ Add `?date=2026-12-31` to the address to see the site as it will look on that da
 
 ## Notes
 - `index.html` contains a static fallback copy of the menu and hours; if the pub's regular menu changes a lot, update the fallback occasionally or just keep `data/*.csv` current.
-- New Year's Eve BBQ (Thu 31 Dec 2026) is set up in Menu and Offers; price and times are blank until confirmed.
+- New Year's Eve BBQ (Thu 31 Dec 2026) is an event; price and times are blank until confirmed.
 - Phone 01765 677198 is confirmed (Tripadvisor's 01765 677332 is out of date).
 - Beer names aren't listed; add them in the Drinks tab. Photos are small; better originals would help. Reviews figures (Tripadvisor 4.8 / 114, Facebook 100% / 29) were as at 9 Oct 2026.
 
@@ -63,3 +63,8 @@ Columns: Type (Walk or Ride), Name, Miles, Climb (ft), Time, Difficulty, Descrip
 5. Get local links: Burton Leonard village website, Harrogate and Nidderdale tourism pages, CAMRA WhatPub, Good Pub Guide, Visit Harrogate, local walking and cycling groups.
 
 **Google Ads (SEM), if the pub wants it:** start small (about £5 to £10 a day) with call-only or "call + location" ads limited to a 10 to 15 mile radius, running Thu to Sun evenings and Sunday lunch week. Good keywords: pub near me, Sunday lunch Harrogate, Sunday roast Ripon, pub food Burton Leonard, dog friendly beer garden Harrogate, pub NYE. Negative keywords: jobs, recipe, for sale, rent, hotel. Tracking: put the GA4 ID, Ads ID and call-conversion label in `config.js` (`ROYAL_OAK_ANALYTICS`). Nothing loads, and no cookies are set, until they are filled in; then a short "cookies OK?" question appears and nothing is tracked until the visitor says yes.
+
+## Page order and events
+Order: hero, village intro, (Feature panel if one is live), On the board (menu), Sunday lunch, What's on, Drinks, Garden, Walks & rides, Hours & find us. What's on is in date order.
+
+The Events tab has two extra columns: **Image** (a picture shown across the top of the card, for example `img/halloween.svg`) and **Menu group**. If Menu group says `Christmas`, the card also shows every live Menu-tab row whose Where column is `Christmas` (a Price section for the course prices, then Starters, Mains, Desserts). Use a new group name for any other set menu. The Halloween Quiz artwork is `img/halloween.svg`.

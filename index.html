@@ -407,20 +407,31 @@ main{padding-top:var(--gap)}
 /* offer strip */
 .offer{background:#E6F0E8;color:var(--ink);border-radius:18px;margin-bottom:var(--gap)}
 .offer a{color:var(--accent)}
-/* hero: headline first, photo as a rounded tile below */
-.hero{display:flex;flex-direction:column;min-height:0;background:#fff;color:var(--ink);align-items:stretch}
+/* hero: headline over a faded photo */
+.hero{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:clamp(340px,52vh,520px);background:#fff;color:var(--ink);overflow:hidden}
 .hero::after{display:none}
-.hero .wrap{order:1;padding-block:clamp(2.4rem,6vw,4.6rem) clamp(1.6rem,3vw,2.4rem)}
-.hero h1{color:var(--ink);text-shadow:none;font-weight:700;letter-spacing:-.04em;font-size:clamp(2.9rem,8vw,6.8rem);max-width:12ch}
+.hero-media{position:absolute;inset:0;margin:0;height:auto;border-radius:0;overflow:hidden;animation:none}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:38% 42%;opacity:.3;filter:saturate(.75) contrast(.9);-webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent 100%);mask-image:linear-gradient(to bottom,#000 45%,transparent 100%);animation:none}
+.hero-badge{display:none}
+.hero .wrap{position:relative;z-index:3;padding-block:clamp(2.2rem,5vw,4rem) clamp(1.6rem,3vw,2.4rem)}
+.hero h1{color:var(--ink);text-shadow:none;font-weight:700;letter-spacing:-.04em;font-size:clamp(2.7rem,7.4vw,6.2rem);max-width:12ch}
 .hero h1 em{color:var(--accent);font-weight:500}
-.fascia{background:var(--page);border:0;outline:0;box-shadow:none;color:var(--ink);border-radius:22px}
+.fascia{background:rgba(255,255,255,.85);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(0,0,0,.08);outline:0;box-shadow:0 10px 30px rgba(0,0,0,.08);color:var(--ink);border-radius:22px}
 .fascia .head{color:var(--ink)}
 .fascia .sub{color:var(--muted)}
 .btn.light{color:var(--ink);border-color:rgba(0,0,0,.28)}
 .btn.light:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
-.hero-media{order:2;position:relative;inset:auto;height:clamp(260px,42vw,540px);margin:0 clamp(.6rem,2vw,1.4rem) clamp(.6rem,2vw,1.4rem);border-radius:22px;overflow:hidden;animation:none}
-.hero-badge{top:1rem;right:1rem;width:clamp(84px,12vw,170px)}
-@media (max-width:700px){.hero{display:flex}.hero-media{height:max(220px,60vw);margin:0 .6rem .6rem;border-radius:18px;overflow:hidden}.hero .wrap{padding-block:1.8rem 1.4rem}.hero-badge{width:76px;top:.6rem;right:.6rem}}
+@media (max-width:700px){.hero{display:flex;min-height:0}.hero-media{position:absolute;inset:0;height:auto;margin:0}.hero .wrap{padding-block:1.8rem 1.4rem}}
+.kicker{margin:0 0 .5rem;color:var(--accent);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.85rem}
+/* events as dated cards */
+.events{max-width:none}
+.events li{display:block;padding:0;overflow:hidden}
+.ev-main{display:grid;grid-template-columns:5.4rem 1fr;gap:1.2rem;padding:1.2rem 1.4rem;align-items:start}
+.ev-art img{display:block;width:100%;aspect-ratio:3/1;object-fit:cover}
+.ev-menu{padding:0 1.4rem 1.6rem}
+.ev-menu .xp{background:var(--timber)}
+@media (max-width:640px){.ev-art img{aspect-ratio:2/1}.ev-main{padding:1rem}.ev-menu{padding:0 1rem 1.2rem}}
+@media (max-width:480px){.ev-main{grid-template-columns:4.2rem 1fr;gap:.8rem}}
 /* menu board: light */
 .chalk{background:#fff;background-image:none;color:var(--ink);border:0;box-shadow:none;outline:0}
 .chalk h2{font-family:var(--display);font-weight:700;letter-spacing:-.03em;color:var(--ink);font-size:clamp(2.4rem,6vw,4.6rem)}
@@ -463,11 +474,10 @@ footer .nap a{color:var(--accent)}
     <nav aria-label="Main">
       <ul id="nav-list">
         <li><a href="#food">Menu</a></li>
-        <li id="nav-xmas" hidden><a href="#christmas">Christmas</a></li>
         <li><a href="#sunday">Sunday lunch</a></li>
+        <li><a href="#events">What's on</a></li>
         <li><a href="#drink">Drinks</a></li>
         <li><a href="#garden">Garden</a></li>
-        <li><a href="#events">What's on</a></li>
         <li><a href="#walks">Walks &amp; rides</a></li>
         <li><a href="#visit">Hours &amp; find us</a></li>
       </ul>
@@ -547,6 +557,7 @@ footer .nap a{color:var(--accent)}
   <!-- MENU -->
   <section class="panel chalk" id="food" aria-labelledby="food-h">
     <div class="wrap inner">
+      <p class="kicker">On now</p>
       <h2 id="food-h">On the board</h2>
       <p class="lead">Home-cooked pub food, made in our own kitchen. Please book ahead, Fridays to Sundays especially.</p>
 
@@ -596,19 +607,6 @@ footer .nap a{color:var(--accent)}
     </div>
   </section>
 
-  <!-- CHRISTMAS PARTIES (shown only while Menu rows with Where = Christmas are live) -->
-  <section class="panel braced pad xmas" id="christmas" aria-labelledby="xmas-h" hidden>
-    <div class="wrap">
-      <p class="kicker">Book your party</p>
-      <h2 id="xmas-h">Christmas party dinner.</h2>
-      <p class="lead">Home-cooked festive food, in our private room for 20 to 30 guests. Two courses or three, with vegetarian and gluten-free choices.</p>
-      <div class="xmas-prices" id="xmas-prices"></div>
-      <div class="xmas-menu" id="xmas-menu"></div>
-      <p class="note">V vegetarian &middot; GF gluten free &middot; GFA gluten free available. Please tell us about any allergies when you book.</p>
-      <p><a class="btn red" href="tel:01765677198">Call 01765 677198 to book</a></p>
-    </div>
-  </section>
-
   <!-- SUNDAY -->
   <section class="panel braced pad" id="sunday" aria-labelledby="sunday-h">
     <div class="wrap roast">
@@ -625,6 +623,17 @@ footer .nap a{color:var(--accent)}
         <li>Roast chicken &amp; stuffing</li>
         <li>Vegetarian sausages</li>
       </ul>
+    </div>
+  </section>
+
+  <!-- WHAT'S ON -->
+  <section class="panel braced pad" id="events" aria-labelledby="events-h">
+    <div class="wrap">
+      <p class="kicker">Coming up</p>
+      <h2 id="events-h">What's on.</h2>
+      <p class="lead">Quiz nights, parties and BBQs, in date order. More dates go up here as soon as they're confirmed.</p>
+      <ul class="events" id="events-list" aria-label="Upcoming events"></ul>
+      <p class="events-empty" id="events-empty">Next dates coming soon. Follow us on <a href="https://www.facebook.com/RoyalOakBurtonLeonard">Facebook</a> or call <a href="tel:01765677198">01765 677198</a>.</p>
     </div>
   </section>
 
@@ -660,16 +669,6 @@ footer .nap a{color:var(--accent)}
       <p>Private hire for up to 100 guests, with a minimum of 50 covers for buffets. Ideal for a christening, a retirement do or a birthday.</p>
       <p style="margin:1.1rem 0 0"><a class="btn dark" href="tel:01765677198">Ask about private hire</a></p>
       <p class="dogs"><strong>Dogs:</strong> welcome in the beer gardens. Not allowed inside since 30 June 2025.</p>
-    </div>
-  </section>
-
-  <!-- WHAT'S ON -->
-  <section class="panel braced pad" id="events" aria-labelledby="events-h">
-    <div class="wrap">
-      <h2 id="events-h">What's on.</h2>
-      <p class="lead">Summer BBQs in the garden, and family fun days with a bouncy castle for the little ones. Dates go up here as soon as they're confirmed.</p>
-      <ul class="events" id="events-list" aria-label="Upcoming events"></ul>
-      <p class="events-empty" id="events-empty">Next dates coming soon. Follow us on <a href="https://www.facebook.com/RoyalOakBurtonLeonard">Facebook</a> or call <a href="tel:01765677198">01765 677198</a>.</p>
     </div>
   </section>
 
@@ -722,6 +721,7 @@ footer .nap a{color:var(--accent)}
       </div>
     </div>
   </section>
+
 </main>
 
 <footer>
@@ -1161,18 +1161,6 @@ function renderMenu(){
   wrap.appendChild(c1);if(c2.childNodes.length)wrap.appendChild(c2);
 }
 
-function renderXmas(){
-  var sec=$("christmas"),nav=$("nav-xmas");if(!sec||!DATA.menu)return;
-  var rows=live(DATA.menu,contentDate(),"show from","show until").filter(function(r){return /^(xmas|christ)/i.test(r.where||"")&&r.item;});
-  sec.hidden=!rows.length;if(nav)nav.hidden=!rows.length;
-  if(!rows.length)return;
-  var pr=$("xmas-prices"),mn=$("xmas-menu");clear(pr);clear(mn);
-  rows.filter(function(r){return /^price/i.test(r.section||"");}).forEach(function(r){
-    var d=el("div","xp");d.appendChild(el("span","xp-n",r.item));d.appendChild(el("span","xp-v",price(r.price)||""));pr.appendChild(d);
-  });
-  groupBySection(rows.filter(function(r){return !/^price/i.test(r.section||"");})).forEach(function(g){mn.appendChild(sectionNode(g));});
-}
-
 function renderSunday(){
   var ul=$("roast-list");if(!ul||!DATA.menu)return;
   var cd=contentDate(),rows=live(DATA.menu,cd,"show from","show until").filter(function(r){return /^sun/i.test(r.where||"")&&r.item;});
@@ -1291,6 +1279,7 @@ function renderEvents(){
   clear(list);
   rows.forEach(function(x){
     var p=evParts(x.d),li=el("li"),dt=el("div","ev-date");
+    if(x.r.image){var art=el("div","ev-art"),im=el("img");im.src=x.r.image;im.alt="";im.loading="lazy";art.appendChild(im);li.appendChild(art);li.className="has-art";}
     dt.appendChild(el("b",null,String(p.d)));dt.appendChild(el("span",null,MONTHS[p.m-1].slice(0,3)));
     var body=el("div","ev-body"),h=el("h3",null,x.r.event);
     if(/^(yes|y|true)$/i.test((x.r["family friendly"]||"").trim()))h.appendChild(el("span","ev-tag","Family friendly"));
@@ -1300,7 +1289,20 @@ function renderEvents(){
     var meta=[when];if(x.r.time)meta.push(x.r.time);if(x.r["booking note"])meta.push(x.r["booking note"]);
     body.appendChild(el("p","ev-meta",meta.join(" \u00b7 ")));
     if(x.r.description)body.appendChild(el("p",null,x.r.description));
-    li.appendChild(dt);li.appendChild(body);list.appendChild(li);
+    var main=el("div","ev-main");main.appendChild(dt);main.appendChild(body);li.appendChild(main);
+    var grp=(x.r["menu group"]||"").trim().toLowerCase();
+    if(grp){
+      var mrows=live(DATA.menu||[],contentDate(),"show from","show until").filter(function(r){return r.item&&(r.where||"").trim().toLowerCase()===grp;});
+      if(mrows.length){
+        var mb=el("div","ev-menu"),pr=el("div","xmas-prices"),mn=el("div","xmas-menu");
+        mrows.filter(function(r){return /^price/i.test(r.section||"");}).forEach(function(r){var d2=el("div","xp");d2.appendChild(el("span","xp-n",r.item));d2.appendChild(el("span","xp-v",price(r.price)||""));pr.appendChild(d2);});
+        groupBySection(mrows.filter(function(r){return !/^price/i.test(r.section||"");})).forEach(function(g){mn.appendChild(sectionNode(g));});
+        if(pr.firstChild)mb.appendChild(pr);mb.appendChild(mn);
+        mb.appendChild(el("p","note","V vegetarian \u00b7 GF gluten free \u00b7 GFA gluten free available. Please tell us about any allergies when you book."));
+        li.appendChild(mb);
+      }
+    }
+    list.appendChild(li);
   });
   empty.hidden=rows.length>0;
   try{
@@ -1325,7 +1327,7 @@ function renderAll(){
   renderStatus();
   renderHours();
   renderMenu();
-  renderSunday();renderXmas();
+  renderSunday();
   renderDrinks();
   renderOffers();
   renderEvents();
