@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" preserveAspectRatio="xMaxYMax slice">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3EBD8" stop-opacity="0"/><stop offset="1" stop-color="#E6DDBF" stop-opacity=".9"/></linearGradient></defs>
+<rect width="1200" height="300" fill="url(#sky)"/>
+<circle cx="1010" cy="70" r="34" fill="#D8B35F" opacity=".55"/>
+<path d="M0 210 C120 150 240 190 380 160 C520 130 640 190 800 150 C940 118 1060 160 1200 130 V300 H0Z" fill="#C9D3B8"/>
+<path d="M0 240 C140 190 300 230 460 200 C620 170 760 225 920 190 C1040 165 1130 190 1200 175 V300 H0Z" fill="#8FA67F"/>
+<path d="M0 275 C160 240 330 268 520 248 C700 228 860 262 1040 238 C1110 230 1160 236 1200 232 V300 H0Z" fill="#3F6B4A"/>
+<g stroke="#2E4D38" stroke-width="2" fill="none" opacity=".55"><path d="M0 262 C160 230 330 255 520 236 C700 218 860 250 1040 228 C1110 221 1160 226 1200 222"/></g>
+<g fill="#1E3A29">
+<g transform="translate(120 224)"><rect x="-3" y="-34" width="6" height="34" rx="3"/><circle cx="0" cy="-48" r="22"/><circle cx="-16" cy="-34" r="14"/><circle cx="16" cy="-36" r="13"/></g>
+<g transform="translate(1130 214)"><rect x="-3" y="-30" width="6" height="30" rx="3"/><circle cx="0" cy="-42" r="19"/><circle cx="-14" cy="-30" r="12"/><circle cx="14" cy="-32" r="11"/></g>
+</g>
+<g fill="#1E3A29" opacity=".7"><rect x="170" y="238" width="170" height="6" rx="3"/><rect x="560" y="242" width="150" height="6" rx="3"/></g>
+<g stroke="#1E3A29" stroke-linecap="round" stroke-linejoin="round" fill="none">
+<!-- mountain biker -->
+<g transform="translate(790 226)" stroke-width="4">
+<circle cx="-30" cy="-2" r="19"/><circle cx="34" cy="-2" r="19"/>
+<path d="M-30 -2 L-8 -34 L22 -34 L34 -2 M-8 -34 L-14 -48 M-8 -34 L6 -2 L-30 -2 M22 -34 L26 -50 M-14 -48 L-22 -48"/>
+<path d="M6 -2 L0 -22" stroke-width="3"/>
+<path d="M-6 -50 L10 -76 L26 -52 M10 -76 L22 -52" stroke-width="7"/>
+<path d="M22 -52 L28 -50" stroke-width="4"/>
+</g>
+<circle cx="796" cy="154" r="9" fill="#1E3A29" stroke="none"/>
+<path d="M788 150 Q796 140 806 150" fill="#C6283A" stroke="none" opacity="0"/>
+<!-- hiker 1 -->
+<g transform="translate(930 228)" stroke-width="5">
+<path d="M0 0 L-4 -34 M0 0 L10 -28 M-4 -34 L-2 -70 M10 -28 L6 -66"/>
+<path d="M-2 -70 L8 -66" stroke-width="12"/>
+<path d="M-12 -66 L-8 -44 L2 -44 L2 -66Z" fill="#1E3A29"/>
+<path d="M2 -62 L22 -40 L22 4" stroke-width="3"/>
+</g>
+<circle cx="930" cy="146" r="9" fill="#1E3A29" stroke="none"/>
+<!-- hiker 2 -->
+<g transform="translate(980 226)" stroke-width="5">
+<path d="M0 0 L-8 -32 M0 0 L8 -30 M-8 -32 L-6 -66 M8 -30 L4 -64"/>
+<path d="M-6 -66 L6 -62" stroke-width="12"/>
+<path d="M-16 -64 L-12 -40 L-2 -40 L-2 -64Z" fill="#1E3A29"/>
+<path d="M4 -60 L-20 -38 L-24 2" stroke-width="3"/>
+</g>
+<circle cx="982" cy="148" r="9" fill="#1E3A29" stroke="none"/>
+<!-- dog -->
+<g transform="translate(1040 232)" stroke-width="3.5"><path d="M0 0 L0 -10 M6 0 L6 -10 M24 0 L24 -10 M30 0 L30 -10"/><path d="M-2 -14 Q15 -22 32 -14" stroke-width="9"/><path d="M-2 -16 L-10 -26" stroke-width="3"/><path d="M32 -14 L40 -22" stroke-width="5"/></g>
+</g>
+</svg>
