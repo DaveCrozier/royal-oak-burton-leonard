@@ -111,7 +111,7 @@ main{padding:0 var(--gap)}
 .brand{display:flex;align-items:center;gap:.8rem}
 .brand-logo{display:block;height:64px;width:auto;flex:none}
 .brand small{margin:0;max-width:7.5rem;line-height:1.25}
-@media (max-width:1100px){.brand small{display:none}}
+@media (max-width:1280px){.brand small{display:none}}
 .brand small{display:block;font-family:var(--body);font-style:normal;font-weight:500;font-size:.78rem;color:#CFC8AC;letter-spacing:.02em;margin-top:.25rem}
 .nav ul{display:flex;gap:1.7rem;list-style:none;margin:0;padding:0}
 .nav ul a{text-decoration:none;font-weight:500;font-size:.98rem}
@@ -313,6 +313,20 @@ li.so .nm,li.so small{text-decoration:line-through;text-decoration-thickness:1px
 .ev-tag{display:inline-block;background:var(--gold);color:var(--timber);font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .55rem;border-radius:999px;margin-left:.5rem;vertical-align:middle}
 .events-empty{margin:1.6rem 0 0;padding:1rem 1.2rem;border:2px dashed var(--timber);max-width:860px}
 .walk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem;margin:2rem 0 1.6rem}
+.xmas[hidden],#nav-xmas[hidden]{display:none}
+.xmas .kicker{margin:0 0 .6rem;color:var(--geranium);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.85rem}
+.xmas-prices{display:flex;flex-wrap:wrap;gap:1rem;margin:0 0 2rem}
+.xp{display:flex;align-items:baseline;gap:.9rem;background:var(--timber);color:#fff;padding:.8rem 1.3rem;border:2px solid var(--gold);outline:5px solid var(--timber)}
+.xp-n{font-family:var(--display);font-style:italic;font-size:1.25rem;color:var(--gold)}
+.xp-v{font-family:var(--display);font-weight:800;font-size:1.9rem}
+.xmas-menu{display:grid;gap:1.4rem 3rem;margin:0 0 1.4rem}
+@media (min-width:900px){.xmas-menu{grid-template-columns:repeat(3,1fr)}}
+.xmas-menu h3{font-family:var(--display);font-size:1.7rem;margin:0 0 .5rem;padding-bottom:.3rem;border-bottom:3px solid var(--timber)}
+.xmas-menu ul{list-style:none;margin:0;padding:0}
+.xmas-menu li{padding:.7rem 0;border-bottom:1px dotted rgba(23,43,31,.45)}
+.xmas-menu li .nm{font-weight:600}
+.xmas-menu li small{display:block;color:var(--muted);font-size:.93rem;line-height:1.4;margin-top:.1rem}
+.xmas .note{color:var(--muted);font-size:.92rem;margin:0 0 1.2rem}
 .walks-scene{height:clamp(150px,21vw,250px);margin:1.6rem 0 .4rem;border:2px solid var(--timber);background:#F8F2E2 url(img/walks-scene.svg) right bottom/cover no-repeat}
 @media (max-width:700px){.walks-scene{height:140px;background-position:78% bottom}}
 .walk{background:#fff;border:2px solid var(--timber);padding:1.3rem 1.3rem 1.4rem}
@@ -385,6 +399,7 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
     <nav aria-label="Main">
       <ul id="nav-list">
         <li><a href="#food">Menu</a></li>
+        <li id="nav-xmas" hidden><a href="#christmas">Christmas</a></li>
         <li><a href="#sunday">Sunday lunch</a></li>
         <li><a href="#drink">Drinks</a></li>
         <li><a href="#garden">Garden</a></li>
@@ -515,6 +530,19 @@ footer .mk{font-family:var(--display);font-style:italic;font-weight:700;color:va
           <p class="note">Menus and special offers change often. The latest are on <a href="https://www.facebook.com/RoyalOakBurtonLeonard">our Facebook page</a>.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- CHRISTMAS PARTIES (shown only while Menu rows with Where = Christmas are live) -->
+  <section class="panel braced pad xmas" id="christmas" aria-labelledby="xmas-h" hidden>
+    <div class="wrap">
+      <p class="kicker">Book your party</p>
+      <h2 id="xmas-h">Christmas party dinner.</h2>
+      <p class="lead">Home-cooked festive food, in our private room for 20 to 30 guests. Two courses or three, with vegetarian and gluten-free choices.</p>
+      <div class="xmas-prices" id="xmas-prices"></div>
+      <div class="xmas-menu" id="xmas-menu"></div>
+      <p class="note">V vegetarian &middot; GF gluten free &middot; GFA gluten free available. Please tell us about any allergies when you book.</p>
+      <p><a class="btn red" href="tel:01765677198">Call 01765 677198 to book</a></p>
     </div>
   </section>
 
@@ -1039,7 +1067,7 @@ function sectionNode(g){
 function renderMenu(){
   var wrap=$("menu-board"),spec=$("menu-special");if(!wrap||!DATA.menu)return;
   var cd=contentDate(),rows=live(DATA.menu,cd,"show from","show until");
-  var board=rows.filter(function(r){return !/^sun/i.test(r.where||"board");});
+  var board=rows.filter(function(r){return !/^(sun|xmas|christ)/i.test(r.where||"board");});
   var hl=board.filter(function(r){return yes(r.highlight);});
   var rest=board.filter(function(r){return !yes(r.highlight);});
 
@@ -1068,6 +1096,18 @@ function renderMenu(){
   var c1=el("div"),c2=el("div");
   groups.forEach(function(g,i){(i<bestK?c1:c2).appendChild(sectionNode(g));});
   wrap.appendChild(c1);if(c2.childNodes.length)wrap.appendChild(c2);
+}
+
+function renderXmas(){
+  var sec=$("christmas"),nav=$("nav-xmas");if(!sec||!DATA.menu)return;
+  var rows=live(DATA.menu,contentDate(),"show from","show until").filter(function(r){return /^(xmas|christ)/i.test(r.where||"")&&r.item;});
+  sec.hidden=!rows.length;if(nav)nav.hidden=!rows.length;
+  if(!rows.length)return;
+  var pr=$("xmas-prices"),mn=$("xmas-menu");clear(pr);clear(mn);
+  rows.filter(function(r){return /^price/i.test(r.section||"");}).forEach(function(r){
+    var d=el("div","xp");d.appendChild(el("span","xp-n",r.item));d.appendChild(el("span","xp-v",price(r.price)||""));pr.appendChild(d);
+  });
+  groupBySection(rows.filter(function(r){return !/^price/i.test(r.section||"");})).forEach(function(g){mn.appendChild(sectionNode(g));});
 }
 
 function renderSunday(){
@@ -1222,7 +1262,7 @@ function renderAll(){
   renderStatus();
   renderHours();
   renderMenu();
-  renderSunday();
+  renderSunday();renderXmas();
   renderDrinks();
   renderOffers();
   renderEvents();
